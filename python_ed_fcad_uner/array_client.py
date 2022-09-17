@@ -10,7 +10,7 @@ def array_stack_client() -> None:
     for i in range(1, 11):
         stack.push(i)
         print("stack.push({}): {} - len(stack): {}".format(i, stack, len(stack)))
-        
+    
     h2("ArrayStack completo")
     print(stack)
     

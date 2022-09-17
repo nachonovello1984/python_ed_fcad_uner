@@ -22,9 +22,13 @@ class ArrayStack():
             str: string con todos los elementos que contiene la pila.
         """
         #Convierto todos los elementos en la lista a str (en orden invertido).
-        str_lista = [str(elem) for elem in self._data[::-1]]
+        #str_lista = [str(elem) for elem in self._data[::-1]]
                 
-        return "ArrayStack(" + ", ".join(str_lista) + ")"
+        res = ""
+        for elem in self._data[::-1]:
+            res += str(elem) + ", "
+        
+        return "ArrayStack(" + res + ")"
     
     def is_empty(self) -> bool:
         """Indica si la pila está vacía

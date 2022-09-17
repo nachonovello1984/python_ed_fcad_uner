@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Union
 
 class ListNode:
     
@@ -6,4 +6,4 @@ class ListNode:
     
     def __init__(self, element : Any, next = None) -> None:
         self._element = element
-        self._next = next
+        self._next : Union[ListNode, None] = next
