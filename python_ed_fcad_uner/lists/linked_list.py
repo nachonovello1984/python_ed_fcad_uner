@@ -1,5 +1,5 @@
 from typing import Any, Union
-from list_node import ListNode
+from python_ed_fcad_uner.list_node import ListNode
 
 class LinkedList:
     """Implementación de una Lista utilizando representación por enlaces."""

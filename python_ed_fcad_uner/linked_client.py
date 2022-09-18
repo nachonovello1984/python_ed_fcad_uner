@@ -1,3 +1,8 @@
+if __name__ == "__main__" and __package__ is None:
+    from sys import path
+    from os.path import dirname as dir
+    path.append(dir(path[0]))
+    
 from stacks.linked_stack import LinkedStack
 from queues.linked_queue import LinkedQueue
 from lists.linked_list import LinkedList
@@ -67,8 +72,8 @@ def linked_list_client() -> None:
     del lista[0]
     
     print(lista)
-    
-if __name__ == '__main__':
+
+if __name__ == "__main__" and __package__ is None:
     linked_stack_client()
-    # linked_queue_client()
-    # linked_list_client()
+    linked_queue_client()
+    linked_list_client()
