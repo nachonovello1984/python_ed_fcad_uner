@@ -1,3 +1,11 @@
+# if para corregir imports de archivos en directorios padre en caso que el proyecto sea
+# utilizado por otros proyectos (vía GitHub por ejemplo).
+# https://stackoverflow.com/questions/6323860/sibling-package-imports
+if __name__ == "__main__" and __package__ is None:
+    from sys import path
+    from os.path import dirname as dir
+    path.append(dir(path[0]))
+
 from stacks.array_stack import ArrayStack
 from queues.array_queue import ArrayQueue
 from util import h1, h2

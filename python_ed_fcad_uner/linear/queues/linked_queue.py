@@ -1,5 +1,5 @@
 from typing import Any, Union
-from python_ed_fcad_uner.list_node import ListNode
+from linear.list_node import ListNode
 
 class LinkedQueue:
     """Implementación de Cola (E.D. tipo FIFO) utilizando representación por enlaces."""

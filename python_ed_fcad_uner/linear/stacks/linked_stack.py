@@ -1,5 +1,5 @@
 from typing import Any, Union
-from python_ed_fcad_uner.list_node import ListNode
+from linear.list_node import ListNode
 
 class LinkedStack:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
