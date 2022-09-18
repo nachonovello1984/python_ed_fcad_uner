@@ -1,15 +1,18 @@
-# if para corregir imports de archivos en directorios padre en caso que el proyecto sea
-# utilizado por otros proyectos (vía GitHub por ejemplo).
-# https://stackoverflow.com/questions/6323860/sibling-package-imports
-if __package__:
-    import sys
-    import os
-    current = os.path.dirname(os.path.realpath(__file__))
-    parent_directory = os.path.dirname(current)
-    sys.path.append(parent_directory)
+# Para corregir imports de archivos en directorios padre
+import sys
+import os
+current = os.path.dirname(os.path.realpath(__file__))
+parent_directory = os.path.dirname(current)
+sys.path.append(parent_directory)
+
+from typing import Any, Union
+
+if not __package__:
+    from linear.list_node import ListNode
+else:
+    from python_ed_fcad_uner.linear.list_node import ListNode
     
 from typing import Any, Union
-from linear.list_node import ListNode
 
 class LinkedStack:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
