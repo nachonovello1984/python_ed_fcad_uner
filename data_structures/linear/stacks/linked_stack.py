@@ -1,16 +1,17 @@
 # Para corregir imports de archivos en directorios padre
-# import sys
-# import os
-# current = os.path.dirname(os.path.realpath(__file__))
-# parent_directory = os.path.dirname(current)
-# sys.path.append(parent_directory)
+import sys
+import os
+current = os.path.dirname(os.path.realpath(__file__))
+parent_directory = os.path.dirname(current)
+sys.path.append(parent_directory)
 
-# from typing import Any, Union
-# if __package__ == "python_ed_fcad_uner.linear.stacks":
-#     from python_ed_fcad_uner.linear.list_node import ListNode
-# else:
 from typing import Any, Union
-from list_node import ListNode
+if __package__ == "data_structures.linear.stacks":
+    from data_structures.linear.list_node import ListNode
+else:
+    from list_node import ListNode
+
+
 
 class LinkedStack:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
