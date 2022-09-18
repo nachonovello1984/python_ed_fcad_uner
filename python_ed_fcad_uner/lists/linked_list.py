@@ -29,13 +29,13 @@ class LinkedList:
         
         res = "" # inicializo resultado con el string vacío
 
-        actual = self._header._next # Inicio con el primer nodo de la estructura.
+        actual = self._header.next # Inicio con el primer nodo de la estructura.
 
         while actual: # Si el elemento actual no es None
             # Lo proceso
-            res += str(actual._element) + ", "
+            res += str(actual.element) + ", "
             # Continúo con el siguiente.
-            actual = actual._next
+            actual = actual.next
 
         # Quito las dos últimas posiciones del string.
         res = res[:-2]
@@ -72,11 +72,11 @@ class LinkedList:
             raise Exception("Índice fuera de rango. No se puede continuar.")
 
         i = 0
-        actual = self._header._next # Inicio en el primer nodo.
+        actual = self._header.next # Inicio en el primer nodo.
         while actual: # Si existe
             if i == key: # Si el valor de i coincide con el de key
-                return actual._element #Devuelvo el valor del nodo en el que estoy ubicado.
-            actual = actual._next # Caso contrario continúo con el siguiente nodo.
+                return actual.element #Devuelvo el valor del nodo en el que estoy ubicado.
+            actual = actual.next # Caso contrario continúo con el siguiente nodo.
             i += 1
 
         return None
@@ -99,12 +99,12 @@ class LinkedList:
 
         i = 0 
         
-        actual = self._header._next # Inicio en el primer nodo
+        actual = self._header.next # Inicio en el primer nodo
         
         while actual: # Si el nodo existe...
             if i == key: # Verifico si el índice coincide con el pasado por parámetro
-                actual._element = value
-            actual = actual._next
+                actual.element = value
+            actual = actual.next
             i += 1
 
     def __delitem__(self, key: int) -> None:
@@ -125,20 +125,20 @@ class LinkedList:
         i = 0
 
         previo = None
-        actual = self._header._next # Arranco en el primer nodo de la lista.
+        actual = self._header.next # Arranco en el primer nodo de la lista.
         while actual: # Si existe...
             if i == key: # Si el i es igual a key => corto.
                 break
             previo = actual # Guardo el valor de actual en previo.
-            actual = actual._next # Continúo con el siguiente nodo.
+            actual = actual.next # Continúo con el siguiente nodo.
             i += 1
 
         # Si previo existe => elimino el nodo actual haciendo que el siguiente del previo sea igual al siguiente de actual
         if previo: 
-            previo._next = actual._next
+            previo.next = actual.next
         else:
             # Si previo no existe => se está queriendo eliminar el primer nodo.
-            self._header._next = actual._next
+            self._header.next = actual.next
 
         self._size -= 1
 
@@ -149,15 +149,15 @@ class LinkedList:
             _type_: _description_
         """
         # Se ubica en el primer nodo.
-        actual = self._header._next
+        actual = self._header.next
         
         #Si existe un nodo
         while actual:
             #Devuelve el elemento del nodo actual
-            yield actual._element
+            yield actual.element
             
             #Continúa con el siguiente.
-            actual = actual._next
+            actual = actual.next
             
     def is_empty(self) -> bool:
         """ Indica si la estructura está vacía o no.
@@ -176,16 +176,16 @@ class LinkedList:
         nuevo_nodo = ListNode(elem)
         # Si la lista está vacía => el nuevo nodo es el primero.
         if self.is_empty():
-            self._header._next = nuevo_nodo
+            self._header.next = nuevo_nodo
         else:
             # Caso contrario => me muevo hasta el final...
             actual = self._header
 
-            while actual._next:
-                actual = actual._next
+            while actual.next:
+                actual = actual.next
 
             # Agrego el nuevo nodo como siguiente del último.
-            actual._next = nuevo_nodo
+            actual.next = nuevo_nodo
 
         self._size += 1
 
@@ -200,14 +200,14 @@ class LinkedList:
         """
         i = 0
 
-        actual = self._header._next # Me ubico en el primer nodo
+        actual = self._header.next # Me ubico en el primer nodo
         
         while actual:
             # Si el elemento de actual es el que estoy buscando devuelvo el valor de i.
-            if actual._element == elem:
+            if actual.element == elem:
                 return i
             
-            actual = actual._next # Continúo con el siguiente nodo.
+            actual = actual.next # Continúo con el siguiente nodo.
             i += 1
 
         return -1

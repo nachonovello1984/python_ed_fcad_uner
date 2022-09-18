@@ -32,9 +32,9 @@ class LinkedStack:
         actual = self._head
         while actual != None:
             # proceso el elemento del nodo actual
-            resultado += str(actual._element) + ", "
+            resultado += str(actual.element) + ", "
             # establezco el siguiente nodo como nodo actual
-            actual = actual._next 
+            actual = actual.next 
         
         #Quito los dos últimos caracteres del string    
         resultado = resultado[:len(resultado)-2]
@@ -69,7 +69,7 @@ class LinkedStack:
         if self.is_empty():
             raise Exception("Pila vacía. Operación no soportada")
         
-        return self._head._element
+        return self._head.element
         
     def pop(self) -> Any:
         """Quita y devuelve el elemento ubicado en el tope de la pila.
@@ -79,10 +79,10 @@ class LinkedStack:
             raise Exception("Pila vacía. Operación no soportada")
         
         #Dejo en resultado el valor a devolver.
-        resultado = self._head._element
+        resultado = self._head.element
         
         #Hago tope al siguiente al tope.
-        self._head = self._head._next
+        self._head = self._head.next
         self._size -= 1
         
         return resultado

@@ -35,10 +35,10 @@ class LinkedQueue:
         actual = self._front
         while actual != None:
             # proceso el elemento del nodo actual
-            resultado += str(actual._element) + ", "
+            resultado += str(actual.element) + ", "
             
             # establezco el siguiente nodo como nodo actual
-            actual = actual._next 
+            actual = actual.next 
         
         #Quito los dos últimos caracteres del string    
         resultado = resultado[:len(resultado)-2]
@@ -75,7 +75,7 @@ class LinkedQueue:
         if self.is_empty(): 
             raise Exception("Estructura vacía. No se puede continuar")
         
-        return self._front._element
+        return self._front.element
     
     def dequeue(self) -> Any:
         """Remueve y devuelve el primer elemento de la cola.
@@ -87,7 +87,7 @@ class LinkedQueue:
             raise Exception("Estructura vacía. No se puede continuar")
         
         resultado = self._front
-        self._front = self._front._next
+        self._front = self._front.next
         self._size -= 1
         return resultado
     
@@ -103,7 +103,7 @@ class LinkedQueue:
             self._front = nuevo_nodo
             self._back = nuevo_nodo
         else:
-            self._back._next = nuevo_nodo
-            self._back = self._back._next
+            self._back.next = nuevo_nodo
+            self._back = self._back.next
             
         self._size += 1
