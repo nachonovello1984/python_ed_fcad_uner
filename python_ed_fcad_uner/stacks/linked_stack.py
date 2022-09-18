@@ -1,6 +1,3 @@
-import sys
-sys.path.append("..")
-
 from typing import Any, Union
 from python_ed_fcad_uner.list_node import ListNode
 

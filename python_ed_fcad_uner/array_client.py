@@ -39,5 +39,10 @@ def array_queue_client() -> None:
         
 
 if __name__ == '__main__':
+    from sys import path
+    from os.path import dirname as dir
+
+    path.append(dir(path[0]))
+    
     array_stack_client()
     array_queue_client()
