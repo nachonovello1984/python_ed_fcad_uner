@@ -6,11 +6,7 @@ parent_directory = os.path.dirname(current)
 sys.path.append(parent_directory)
 
 from typing import Any, Union
-
-if not __package__:
-    from linear.list_node import ListNode
-else:
-    from python_ed_fcad_uner.linear.list_node import ListNode
+from linear.list_node import ListNode
         
 class LinkedList:
     """Implementación de una Lista utilizando representación por enlaces."""
