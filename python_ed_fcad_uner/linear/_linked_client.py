@@ -1,10 +1,9 @@
-# if para corregir imports de archivos en directorios padre en caso que el proyecto sea
-# utilizado por otros proyectos (vía GitHub por ejemplo).
-# https://stackoverflow.com/questions/6323860/sibling-package-imports
-if __name__ == "__main__" and __package__ is None:
-    from sys import path
-    from os.path import dirname as dir
-    path.append(dir(path[0]))
+# Para corregir imports de archivos en directorios padre
+import sys
+import os
+current = os.path.dirname(os.path.realpath(__file__))
+parent_directory = os.path.dirname(current)
+sys.path.append(parent_directory)
     
 from stacks.linked_stack import LinkedStack
 from queues.linked_queue import LinkedQueue
