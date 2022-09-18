@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")
+
 from typing import Any, Union
 from list_node import ListNode
 
