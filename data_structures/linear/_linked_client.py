@@ -1,13 +1,13 @@
-# Para corregir imports de archivos en directorios padre
-import sys
-import os
-current = os.path.dirname(os.path.realpath(__file__))
-parent_directory = os.path.dirname(current)
-sys.path.append(parent_directory)
+# # Para corregir imports de archivos en directorios padre
+# import sys
+# import os
+# current = os.path.dirname(os.path.realpath(__file__))
+# parent_directory = os.path.dirname(current)
+# sys.path.append(parent_directory)
     
-from stacks.linked_stack import LinkedStack
-from queues.linked_queue import LinkedQueue
-from lists.linked_list import LinkedList
+from stacks import LinkedStack
+from queues import LinkedQueue
+from lists import LinkedList
 
 from util import h1, h2
 

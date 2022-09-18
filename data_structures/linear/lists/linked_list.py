@@ -1,16 +1,19 @@
-# Para corregir imports de archivos en directorios padre
-import sys
-import os
-current = os.path.dirname(os.path.realpath(__file__))
-parent_directory = os.path.dirname(current)
-sys.path.append(parent_directory)
+# # Para corregir imports de archivos en directorios padre
+# import sys
+# import os
+# current = os.path.dirname(os.path.realpath(__file__))
+# parent_directory = os.path.dirname(current)
+# sys.path.append(parent_directory)
 
+# from typing import Any, Union
+# if __package__ == "python_ed_fcad_uner.linear.stacks":
+#     from python_ed_fcad_uner.linear.list_node import ListNode
+# else:
+#     from linear.list_node import ListNode
+    
 from typing import Any, Union
-if __package__ == "python_ed_fcad_uner.linear.stacks":
-    from python_ed_fcad_uner.linear.list_node import ListNode
-else:
-    from linear.list_node import ListNode
-        
+from list_node import ListNode
+
 class LinkedList:
     """Implementación de una Lista utilizando representación por enlaces."""
     
