@@ -11,8 +11,6 @@ if __package__ == "data_structures.linear.stacks":
 else:
     from list_node import ListNode
 
-
-
 class LinkedStack:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
     def __init__(self) -> None:
