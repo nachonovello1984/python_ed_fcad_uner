@@ -6,8 +6,11 @@ parent_directory = os.path.dirname(current)
 sys.path.append(parent_directory)
 
 from typing import Any, Union
-from linear.list_node import ListNode
-    
+if __package__ == "python_ed_fcad_uner.linear.stacks":
+    from python_ed_fcad_uner.linear.list_node import ListNode
+else:
+    from linear.list_node import ListNode
+
 class LinkedQueue:
     """Implementación de Cola (E.D. tipo FIFO) utilizando representación por enlaces."""
     
