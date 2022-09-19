@@ -1,5 +1,5 @@
 from typing import Any, Union
-from data_structures.linear.list_node import ListNode
+from ..list_node import ListNode
 
 class LinkedStack:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
