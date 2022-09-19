@@ -1,14 +1,6 @@
-# # if para corregir imports de archivos en directorios padre en caso que el proyecto sea
-# # utilizado por otros proyectos (vía GitHub por ejemplo).
-# # https://stackoverflow.com/questions/6323860/sibling-package-imports
-# if __name__ == "__main__" and __package__ is None:
-#     from sys import path
-#     from os.path import dirname as dir
-#     path.append(dir(path[0]))
-
-from stacks import ArrayStack
-from queues import ArrayQueue
-from util import h1, h2
+from data_structures.linear.stacks import ArrayStack
+from data_structures.linear.queues import ArrayQueue
+from data_structures.linear.util import h1, h2
 
 def array_stack_client() -> None:
     """Pone a prueba ArrayStack y todos sus métodos"""

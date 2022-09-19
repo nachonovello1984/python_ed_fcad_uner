@@ -1,4 +1,4 @@
-from stacks.array_stack import ArrayStack
+from data_structures import ArrayStack
 
 def coinciden_simbolos(expresion : str) -> bool:
     izquierda = "({["

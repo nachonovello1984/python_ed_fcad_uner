@@ -1,15 +1,5 @@
-# # Para corregir imports de archivos en directorios padre
-# import sys
-# import os
-# current = os.path.dirname(os.path.realpath(__file__))
-# parent_directory = os.path.dirname(current)
-# sys.path.append(parent_directory)
-    
-from stacks import LinkedStack
-from queues import LinkedQueue
-from lists import LinkedList
-
-from util import h1, h2
+from data_structures import LinkedStack, LinkedQueue, LinkedList
+from data_structures.linear.util import h1, h2
 
 def linked_stack_client() -> None:
     """Pone a prueba LinkedStack y todos sus métodos"""

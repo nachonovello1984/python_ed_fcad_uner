@@ -1,16 +1,5 @@
-# Para corregir imports de archivos en directorios padre
-import sys
-import os
-current = os.path.dirname(os.path.realpath(__file__))
-parent_directory = os.path.dirname(current)
-sys.path.append(parent_directory)
-
 from typing import Any, Union
-
-if __package__ == "data_structures.linear.stacks":
-    from data_structures.linear.list_node import ListNode
-else:
-    from list_node import ListNode
+from data_structures.linear.list_node import ListNode
 
 class LinkedStack:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
