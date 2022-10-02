@@ -33,7 +33,7 @@ class LinkedQueue:
 
         #Me quedo en actual con el elemento ubicado en el frente
         actual = self._front
-        while actual != None:
+        while actual:
             # proceso el elemento del nodo actual
             resultado += str(actual.element) + ", "
             
