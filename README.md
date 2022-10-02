@@ -5,7 +5,7 @@ Este proyecto sirve tanto de ejemplo de implementación de las Estructuras de Da
 
 - [x] Estructuras de Datos Lineales: Listas, Pilas, Colas e Iteradores.
 - [ ] Estructuras de Datos Jerárquicas de Grado N: Apuntadores al padre, Lista de hijos, Hijo izquierdo - Hermano Derecho. 
-- [ ] Árboles Binarios y Heap mínimo.
+- [x] Árboles Binarios y Heap mínimo.
 - [ ] Mapas, Diccionarios y conjuntos.
 - [ ] Árboles ABB y AVL.
 - [ ] Árboles multivía.
