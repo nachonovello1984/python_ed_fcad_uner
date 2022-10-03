@@ -178,13 +178,13 @@ class LinkedBinaryTree:
     #########################################################################
         
     def _preorder_traversal(self, node : BinaryTreeNode) -> Iterable[Any]:
-        """_summary_
+        """Realiza un recorrido en preorden desde el node.
 
         Args:
-            node (BinaryTreeNode): _description_
+            node (BinaryTreeNode): nodo desde donde inicia el recorrido en preorden.
 
         Yields:
-            _type_: _description_
+            Any: Devuelve el elemento de cada nodo.
         """
         if node:
             yield node.element
