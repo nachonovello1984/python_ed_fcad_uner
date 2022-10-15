@@ -173,11 +173,14 @@ class LinkedBinaryTree:
         """
         return self._preorder_traversal(self._root)
     
+    def inorder_traversal(self) -> Iterable[Any]:
+        return self._inorder_traversal(self._root)
+    
     #########################################################################
     #							MÉTODOS NO PÚBLICOS
     #########################################################################
         
-    def _preorder_traversal(self, node : BinaryTreeNode) -> Iterable[Any]:
+    def _preorder_traversal(self, node : BinaryTreeNode): 
         """Realiza un recorrido en preorden desde el node.
 
         Args:
@@ -190,6 +193,15 @@ class LinkedBinaryTree:
             yield node.element
             
             yield from self._preorder_traversal(node.left_child)
+            yield from self._preorder_traversal(node.right_child)
+    
+    def _inorder_traversal(self, node: BinaryTreeNode) -> Iterable[Any]:
+        
+        if node:
+            yield from self._preorder_traversal(node.left_child)
+            
+            yield node.element
+            
             yield from self._preorder_traversal(node.right_child)
     
     def _contains_rec(self, current: BinaryTreeNode, search: BinaryTreeNode) -> bool:
@@ -213,7 +225,7 @@ class LinkedBinaryTree:
                 res = self._contains_rec(current.right_child, search)
                 
         return res
-            
+                
     def _contains(self, node: BinaryTreeNode) -> bool:
         """Indica si el nodo pasado por parámetro pertenece a la estructura.
 
@@ -240,6 +252,9 @@ class LinkedBinaryTree:
             
             if parent:
                 raise Exception ("No se puede agregar un nodo y su padre si la estructura está vacía.")
+            
+            
+            
             
             self._root = new_node
         else:
