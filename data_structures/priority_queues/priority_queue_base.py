@@ -28,7 +28,7 @@ class PriorityQueueBase:
             Returns:
                 str: concatena en un único string todas las propiedades del _Item.
             """
-            return f"_Item(key={self._key}, value={self._value}"
+            return f"_Item(key={self._key}, value={self._value})"
             
         def __str__(self) -> str:
             """Ídem __repr__()
