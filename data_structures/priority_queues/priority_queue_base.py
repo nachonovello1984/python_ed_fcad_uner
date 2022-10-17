@@ -20,7 +20,7 @@ class PriorityQueueBase:
             Returns:
                 bool: Devuelve verdadero si el objeto que recibe el mensaje es menor que el pasado por parámetro.
             """
-            return self._key < other._key 
+            return self._key < other._key
         
         def __repr__(self) -> str:
             """Convierte en str las propiedades del _Item.
