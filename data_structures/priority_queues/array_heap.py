@@ -11,6 +11,26 @@ class ArrayHeap(PriorityQueueBase):
     def __init__(self) -> None:
         """Crea un nuevo Heap"""
         self._data = []
+        
+        
+    def __repr__(self) -> str:
+        """Convierte en un string todos los nodos del heap.
+
+        Returns:
+            str: concatena en único string todos los nodos.
+        """
+        if self.is_empty():
+            return "ArrayHeap()"
+        
+        return f"ArrayHeap({', '.join(list(str(x) for x in self._data))})"
+    
+    def __str__(self) -> str:
+        """Ídem __repr__().
+
+        Returns:
+            str: string formado por la concatenación de todos los ítems del heap.
+        """
+        return self.__repr__()
 
     def __len__(self) -> int:
         """Devuelve la cantidad de nodos de la estructura.

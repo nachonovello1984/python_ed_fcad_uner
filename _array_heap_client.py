@@ -7,8 +7,10 @@ heap.add(30, 30)
 heap.add(10, 10)
 heap.add(35, 35)
 
+print(heap)
+
 print(f"{' VACIADO DE HEAP ':*^60}")
 
 while not heap.is_empty():
-    print(heap.min())
+    print("heap.min():", heap.min())
     heap.remove_min()
