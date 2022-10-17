@@ -125,7 +125,7 @@ class ArrayHeap(PriorityQueueBase):
 		Returns:
 			bool: True si tiene hijo derecho, False en caso contrario.
 		"""
-        return self._right(j) < len(self._data)  # index beyond end of list?
+        return self._right(j) < len(self._data) 
 
     def _swap(self, i: int, j: int) -> None:
         """Intercambia los elementos de los índices i y j del array.
