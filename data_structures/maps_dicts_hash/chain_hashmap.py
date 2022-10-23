@@ -1,4 +1,4 @@
-from typing import Any, List, Union
+from typing import Any, List, Union, Optional
 from .hashmap_base import HashMapBase
 from .unsorted_table_map import UnsortedTableMap
 
@@ -6,7 +6,7 @@ class ChainHashMap(HashMapBase):
     
     def __init__(self, cap=11, p=109345121) -> None:
         super().__init__()
-        self._table : List[UnsortedTableMap] = cap * [None]
+        self._table : List[UnsortedTableMap | None] = [None] * cap
         
     def __str__(self) -> str:
         
@@ -25,9 +25,9 @@ class ChainHashMap(HashMapBase):
         if self._table[j] is None:
             self._table[j] = UnsortedTableMap()
             
-        oldsize = len(self._table[j])
-        self._table[j][k] = v
-        if len(self._table[j]) > oldsize:
+        oldsize = len(self._table[j])  # type: ignore
+        self._table[j][k] = v # type: ignore
+        if len(self._table[j]) > oldsize: # type: ignore
             self._n += 1
     
     def _bucket_delitem(self, j, k):

@@ -313,7 +313,7 @@ class LinkedBinaryTree:
             
         return None
     
-    def _search_replace(self, node: BinaryTreeNode | None) -> BinaryTreeNode:
+    def _search_replace(self, node: BinaryTreeNode) -> BinaryTreeNode:
         """Busca como reemplazo el nodo ubicado más a la izquierda del subárbol derecho de node.
 
         Args:

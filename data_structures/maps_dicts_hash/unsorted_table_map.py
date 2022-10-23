@@ -1,9 +1,10 @@
+from typing import List
 from .map_base import MapBase
 
 class UnsortedTableMap(MapBase):
     
     def __init__(self):
-        self._table  = []
+        self._table : List[MapBase._Item] = []
         
     def __len__(self):
         return len(self._table)

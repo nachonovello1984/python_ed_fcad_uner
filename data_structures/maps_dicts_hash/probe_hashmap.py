@@ -4,6 +4,12 @@ from .hashmap_base import HashMapBase
 class ProbeHashMap(HashMapBase):
 
     _AVAIL = object()
+    
+    def __str__(self) -> str:
+        
+        res = ",\n\t".join([f"i: {i}, item: {item}" for i, item in enumerate(self._table) if not self._is_available(i)])
+        
+        return f"ProbeHashMap({res})"
 
     def _is_available(self, j: int) -> bool:
         return self._table[j] is None or self._table[j] is ProbeHashMap._AVAIL
@@ -16,15 +22,15 @@ class ProbeHashMap(HashMapBase):
                     first_available = j  # marcar como primer posición disponible.
                 if self._table[j] is None:
                     return (False, first_available)  # fallo en la búsqueda.
-                elif k == self._table[j]._key:
-                    return (True, j)  # se encontró una coincidencia.
+            elif k == self._table[j]._key: # type: ignore
+                return (True, j)  # se encontró una coincidencia.
             j = (j + 1) % len(self._table)  # continúa buscando (de manera cíclica)
 
     def _bucket_getitem(self, j : int, k : Any) -> Any:
         found, s = self._find_slot(j, k)
         if not found:
             raise KeyError('Key Error: ' + repr(k)) # no se encontraron coincidencias.
-        return self._table[s]._value
+        return self._table[s]._value # type: ignore
 
     def _bucket_setitem(self, j: int, k : Any, v : Any) -> None:
         found, s = self._find_slot(j, k)
@@ -32,9 +38,9 @@ class ProbeHashMap(HashMapBase):
             self._table[s] = self._Item(k,v) # omerta
             self._n += 1 # incrementa el tamaño en 1
         else:
-            self._table[s]._value = v # sobreescribe el valor existente.
+            self._table[s]._value = v # type: ignore . Sobreescribe el valor existente.
 
-    def _bucket_delitem(self, j: int, k: Any):
+    def _bucket_delitem(self, j: int, k: Any) -> None:
         found, s = self._find_slot(j, k)
         if not found:
             raise KeyError('Key Error: ' + repr(k)) # no se encontraron coincidencias.
@@ -43,4 +49,4 @@ class ProbeHashMap(HashMapBase):
     def __iter__(self):
         for j in range(len(self._table)): # accede a todos los elementos de la tabla.
             if not self._is_available(j):
-                yield self._table[j]._key
+                yield self._table[j]._key # type: ignore
