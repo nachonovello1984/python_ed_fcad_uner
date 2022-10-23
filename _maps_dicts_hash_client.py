@@ -39,7 +39,7 @@ print(chain_hashmap)
 print("Letra que más se repite:", max(chain_hashmap.items(), key= lambda x : x[1]))
 
 print(f"{'':*^60}")
-print(f"{' ChainHashMap ':*^60}")
+print(f"{' ProbeHashMap ':*^60}")
 print(f"{'':*^60}")
 
 lorem_chars = "".join([letra for letra in lorem_ipsum if letra.isalpha()])
