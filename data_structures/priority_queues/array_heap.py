@@ -58,7 +58,7 @@ class ArrayHeap(PriorityQueueBase):
         self._data.append(self._Item(key, value)) # _Item es la clase definida en PriorityQueueBase
         self._upheap(len(self._data) - 1)  #El nuevo nodo es hoja y hay que dejarlo ordenado.
 
-    def min(self) -> Tuple[Any]:
+    def min(self) -> Tuple[Any, Any]:
         """Devuelve sin quitar el elemento ubicado en la raiz del heap.
   
 		Raises:
@@ -74,7 +74,7 @@ class ArrayHeap(PriorityQueueBase):
         item = self._data[0]
         return (item._key, item._value)
 
-    def remove_min(self) -> None:
+    def remove_min(self) -> Tuple[Any, Any]:
         """Quita el nodo con menor valor de clave.
         
         Raises:

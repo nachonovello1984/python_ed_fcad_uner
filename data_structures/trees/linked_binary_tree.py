@@ -87,7 +87,7 @@ class LinkedBinaryTree:
         """
         return self._root.element
         
-    def add_left_child(self, parent: BinaryTreeNode, new_node: BinaryTreeNode) -> None:
+    def add_left_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
         """Agrega un hijo izquierdo al nodo especificado como padre.
 
         Args:
@@ -96,7 +96,7 @@ class LinkedBinaryTree:
         """
         self._add_child(True, parent, new_node)
     
-    def add_right_child(self, parent: BinaryTreeNode, new_node: BinaryTreeNode) -> None:
+    def add_right_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
         """Agrega un hijo derecho al nodo especificado como padre.
 
         Args:
@@ -180,7 +180,7 @@ class LinkedBinaryTree:
     #							MÉTODOS NO PÚBLICOS
     #########################################################################
         
-    def _preorder_traversal(self, node : BinaryTreeNode): 
+    def _preorder_traversal(self, node : BinaryTreeNode | None): 
         """Realiza un recorrido en preorden desde el node.
 
         Args:
@@ -195,7 +195,7 @@ class LinkedBinaryTree:
             yield from self._preorder_traversal(node.left_child)
             yield from self._preorder_traversal(node.right_child)
     
-    def _inorder_traversal(self, node: BinaryTreeNode) -> Iterable[Any]:
+    def _inorder_traversal(self, node: BinaryTreeNode | None) -> Iterable[Any]:
         
         if node:
             yield from self._preorder_traversal(node.left_child)
@@ -237,7 +237,7 @@ class LinkedBinaryTree:
         """
         return self._contains_rec(self._root, node)
         
-    def _add_child(self, is_left: bool, parent: BinaryTreeNode, new_node: BinaryTreeNode) -> None:
+    def _add_child(self, is_left: bool, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
         """Agrega un new_node como hijo de parent.
 
         Args:
@@ -252,10 +252,7 @@ class LinkedBinaryTree:
             
             if parent:
                 raise Exception ("No se puede agregar un nodo y su padre si la estructura está vacía.")
-            
-            
-            
-            
+
             self._root = new_node
         else:
             if not parent:
@@ -316,7 +313,7 @@ class LinkedBinaryTree:
             
         return None
     
-    def _search_replace(self, node: BinaryTreeNode) -> BinaryTreeNode:
+    def _search_replace(self, node: BinaryTreeNode | None) -> BinaryTreeNode:
         """Busca como reemplazo el nodo ubicado más a la izquierda del subárbol derecho de node.
 
         Args:

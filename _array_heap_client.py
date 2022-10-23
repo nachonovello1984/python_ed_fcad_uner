@@ -2,10 +2,10 @@ from data_structures import ArrayHeap
 
 heap = ArrayHeap()
 
-heap.add(20, 20)
-heap.add(30, 30)
-heap.add(10, 10)
-heap.add(35, 35)
+heap.add(20, 'A')
+heap.add(30, 'B')
+heap.add(10, 'C')
+heap.add(35, 'D')
 
 print(heap)
 

@@ -4,6 +4,6 @@ class ListNode:
     
     __slots__ = "element", "next"
     
-    def __init__(self, element : Any, next = None) -> None:
+    def __init__(self, element : Any, next : Union['ListNode', None] = None) -> None:
         self.element = element
         self.next : Union[ListNode, None] = next
