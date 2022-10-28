@@ -24,30 +24,29 @@ for (p, c) in map.items():
 print('La palabra más frecuente es:', max_palabra)
 print('El número de ocurrencias es:', max_cantidad)
 
-print(f"{'':*^60}")
-print(f"{' ChainHashMap ':*^60}")
-print(f"{'':*^60}")
+# print(f"{' ChainHashMap ':*^60}")
+# print(f"{'':*^60}")
 
-lorem_chars = "".join([letra for letra in lorem_ipsum if letra.isalpha()])
+# lorem_chars = "".join([letra for letra in lorem_ipsum if letra.isalpha()])
 
-chain_hashmap = ChainHashMap()
-for i in lorem_chars:
-    chain_hashmap[i] = 1 + chain_hashmap.get(i, 0)
+# chain_hashmap = ChainHashMap()
+# for i in lorem_chars:
+#     chain_hashmap[i] = 1 + chain_hashmap.get(i, 0)
         
-print(chain_hashmap)
+# print(chain_hashmap)
 
-print("Letra que más se repite:", max(chain_hashmap.items(), key= lambda x : x[1]))
+# print("Letra que más se repite:", max(chain_hashmap.items(), key= lambda x : x[1]))
 
-print(f"{'':*^60}")
-print(f"{' ProbeHashMap ':*^60}")
-print(f"{'':*^60}")
+# print(f"{'':*^60}")
+# print(f"{' ProbeHashMap ':*^60}")
+# print(f"{'':*^60}")
 
-lorem_chars = "".join([letra for letra in lorem_ipsum if letra.isalpha()])
+# lorem_chars = "".join([letra for letra in lorem_ipsum if letra.isalpha()])
 
-probe_hashmap = ProbeHashMap()
-for i in lorem_chars:
-    probe_hashmap[i] = 1 + probe_hashmap.get(i, 0)
+# probe_hashmap = ProbeHashMap()
+# for i in lorem_chars:
+#     probe_hashmap[i] = 1 + probe_hashmap.get(i, 0)
         
-print(probe_hashmap)
+# print(probe_hashmap)
 
-print("Letra que más se repite:", max(probe_hashmap.items(), key= lambda x : x[1]))
+# print("Letra que más se repite:", max(probe_hashmap.items(), key= lambda x : x[1]))
