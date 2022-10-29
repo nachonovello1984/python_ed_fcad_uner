@@ -106,7 +106,7 @@ class ProbeHashMap(HashMapBase):
         Raises:
             KeyError: arroja excepción cuando no se encuentra una posición para k en la tabla.
         """
-        found, s = self._find_slot(j, k)
+        found, s = self._find_slot(j, k)  # type: ignore
         if not found:
             raise KeyError('Key Error: ' + repr(k)) # no se encontraron coincidencias.
         

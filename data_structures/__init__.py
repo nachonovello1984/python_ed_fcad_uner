@@ -2,3 +2,4 @@ from .linear import ArrayStack, LinkedStack, ArrayQueue, LinkedQueue, LinkedList
 from .trees import BinaryTreeNode, LinkedBinaryTree
 from .priority_queues import ArrayHeap, PriorityQueueBase
 from .maps_dicts_hash import MapBase, UnsortedTableMap, ChainHashMap, ProbeHashMap
+from .graphs import Vertex, Edge, Graph
