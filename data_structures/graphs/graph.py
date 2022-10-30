@@ -63,10 +63,10 @@ class Graph:
         return [key for key in self._outgoing.keys()]
 
     def edge_count(self) -> int:
-        """ Devuelve la cantidad de arcos del grafo.
+        """ Devuelve la cantidad de aristas del grafo.
 
         Returns:
-            int: devuelve la cantidad de vértices del grafo.
+            int: devuelve la cantidad de aristas del grafo.
         """
         # Suma la cantidad de items en el diccionario outgoing para cada uno de los vértices.
         total = sum(len(self._outgoing[v]) for v in self._outgoing)
@@ -75,44 +75,44 @@ class Graph:
         return total if self.is_directed() else total // 2
 
     def edges(self) -> Set[Edge]:
-        """ Devuelve todos los arcos del grafo.
+        """ Devuelve todas las aristas del grafo.
 
         Returns:
-            Set[Edge]: Evita la repetición de arcos utilizando un conjunto.
+            Set[Edge]: Evita la repetición de aristas utilizando un conjunto.
         """
-        # En un grafo no dirigido evita informar dos veces los arcos.
+        # En un grafo no dirigido evita informar dos veces los aristas.
         result: Set[Edge] = set()
 
-        # Para cada uno de los vértices, toma los arcos y los
+        # Para cada uno de los vértices, toma las aristas y las agrega al conjunto resultado.
         for secondary_map in self._outgoing.values():
-            #
+            
             result.update(secondary_map.values())
 
         return result
 
     def get_edge(self, u: Vertex, v: Vertex) -> Edge:
-        """ Devuelve el arco que conecta u y v.
+        """ Devuelve la arista que conecta u y v.
 
         Args:
             u (Vertex): vértice origen
             v (Vertex): vértice destino
 
         Returns:
-            Edge: arco que conecta u y v (en ese órden)
+            Edge: arista que conecta u y v (en ese órden)
         """
         # Siempre busco en _outgoing en el órden de los parámetros.
         return self._outgoing[u].get(v)   # type: ignore
 
     def degree(self, v: Vertex, outgoing: bool = True) -> int:
-        """ Devuelve la cantidad de arcos entrantes/salientes de v.
+        """ Devuelve la cantidad de aristas entrantes/salientes de v.
 
         Args:
-            v (Vertex): vértice del cuál se analizarán la cantidad de arcos.
-            outgoing (bool, optional): True si se tendrán en cuenta los arcos de salida.
+            v (Vertex): vértice del cuál se analizarán la cantidad de aristas.
+            outgoing (bool, optional): True si se tendrán en cuenta las aristas de salida.
             Caso contrario los de entrada. Valor por defecto True.
 
         Returns:
-            int: número de arcos que entran/salen de v.
+            int: número de aristas que entran/salen de v.
         """
         # Determino el diccionario sobre el que hacer el análisis y se lo asigno a adj.
         adj = self._outgoing if outgoing else self._incoming
@@ -121,20 +121,20 @@ class Graph:
         return len(adj[v])
 
     def incident_edges(self, v: Vertex, outgoing: bool = True) -> Generator[Edge, None, None]:
-        """ Devuelve un generator con todos los arcos que entran / salen de v.
+        """ Devuelve un generator con todos las aristas que entran / salen de v.
 
         Args:
-            v (Vertex): vértice del que se quieren obtener los arcos
-            outgoing (bool, optional): True si se quieren obtener los arcos que salen de v.
+            v (Vertex): vértice del que se quieren obtener las aristas
+            outgoing (bool, optional): True si se quieren obtener las aristas que salen de v.
             Caso contrario los de entrada. Valor por defecto True.
 
         Yields:
-            Generator[Edge, None, None]: devuelve generator con todos los arcos que entran/salen de v.
+            Generator[Edge, None, None]: devuelve generator con todos las aristas que entran/salen de v.
         """
         # Determino el diccionario sobre el que se quiere hacer el análisis.
         adj = self._outgoing if outgoing else self._incoming
 
-        # Obtengo todos los arcos del diccionario referenciado por adj.
+        # Obtengo todos las aristas del diccionario referenciado por adj.
         for edge in adj[v].values():
             yield edge
 
@@ -158,14 +158,14 @@ class Graph:
         return v
 
     def insert_edge(self, u: Vertex, v: Vertex, x: Any | None) -> None:
-        """ Inserta un arco entre con origen u, destino v y elemento x.
+        """ Inserta una arista entre con origen u, destino v y elemento x.
 
         Args:
             u (Vertex): vértice origen.
             v (Vertex): vértice destino.
-            x (Any | None): información a almacenar en el arco.
+            x (Any | None): información a almacenar en la arista.
         """
-        # Creo el arco
+        # Creo la arista
         e = Edge(u, v, x)
         # Lo registro en _outgoing e _incoming.
         self._outgoing[u][v] = e
@@ -207,8 +207,8 @@ class Graph:
             walk = v # Definimos v como walk.
             
             while walk is not u: # Si walk no es u
-                e = discovered[walk] # Obtenemos el arco para walk.
-                parent = e.opposite(walk) # Pido el opuesto a walk en el arco e.
+                e = discovered[walk] # Obtenemos la arista para walk.
+                parent = e.opposite(walk) # Pido el opuesto a walk en la arista e.
                 path.append(parent) # Lo agrego a la lista resultado.
                 walk = parent # Ahora parent es el nuevo walk.
                 
@@ -218,12 +218,13 @@ class Graph:
     
     def dfs_complete(self) -> Dict[Vertex, Edge | None]:
         """ Lleva a cabo una búsqueda primero en profundidad para todo el grafo y 
-        retorna el diccionario forest. El resultado mapea cada vértice al arco que 
-        fue usado para descubrirlo. Los vértices que mapean a None son las raíces 
+        retorna el diccionario forest. El resultado mapea cada vértice a la arista que 
+        fue usada para descubrirlo. Los vértices que mapean a None son las raíces 
         del árbol DFS.
 
         Returns:
-            Dict[Vertex, Edge | None]: Diccionario resultado que mapea el vértice junto con el arco que se utilizó para descubrirlo.
+            Dict[Vertex, Edge | None]: Diccionario resultado que mapea el vértice junto 
+            con la arista que se utilizó para descubrirlo.
         """
         forest : Dict[Vertex, Edge | None] = {}
         # Obtengo una lista con todos los vértices del grafo y los proceso uno a uno.
@@ -234,8 +235,41 @@ class Graph:
                 forest[u] = None
                 self._dfs(u, forest)
         return forest
-        
     
+    def bfs(self, s : Vertex) -> Dict[Vertex, Edge | None]:
+        """ Implementa un trayecto del tipo búsqueda primero en anchura.
+
+        Args:
+            s (Vertex): vértice desde donde se inicia el trayecto.
+
+        Returns:
+            Dict[Vertex, Edge | None]: Retorna un diccionario con todos los 
+            vértices y los arcos utilizandos para llegar a ellos.
+        """
+        
+        # Defino discovered como un diccionario que en principio solo tiene el vértice de inicio.
+        discovered : Dict[Vertex, Edge | None] = {s : None}
+        self._bfs(s, discovered)
+        return discovered
+    
+    def BFS_complete(self) -> Dict[Vertex, Edge | None]:
+        """ Lleva a cabo una búsqueda primero en anchura en todo el grafo
+        Como resultao
+
+        Returns:
+            Dict[Vertex, Edge | None]: diccionario con todos los vétices encontrados y los
+            arcos que se siguieron para encontrarlos. Las raíces son marcadas con arco None.
+        """
+        forest = {}
+        # Para todos los vértices..
+        for u in self.vertices():
+            # Si ya no fueron procesados
+            if u not in forest:
+                # Inicio un recorrido en anchura a partir de u.
+                forest[u] = None
+                self._bfs(u, forest)
+        return forest
+        
     #########################################################################
     #							MÉTODOS NO PÚBLICOS
     #########################################################################
@@ -245,12 +279,12 @@ class Graph:
         visitados en discovered.
 
         Args:
-            u (Vertex): vértice sobre el que se van a analizar los arcos.
+            u (Vertex): vértice sobre el que se van a analizar las aristas.
             discovered (Dict[Vertex, Edge]): camino con todos los nodos ya visitados.
         """
-        # Para el vértice u obtengo los arcos.
+        # Para el vértice u obtengo las aristas.
         for e in self.incident_edges(u):
-            # Obtengo el vértice opuesto a u para el arco e
+            # Obtengo el vértice opuesto a u para la arista e
             v = e.opposite(u)
             # Si v no estaba en el diccionario de los vértices visitados.
             if v not in discovered:
@@ -258,3 +292,25 @@ class Graph:
                 discovered[v] = e
                 # Recursivamente continúo haciendo la búsqueda por v.
                 self._dfs(v, discovered)
+                
+    def _bfs(self, s : Vertex, discovered : Dict[Vertex, Edge | None]) -> None:
+        """Lleva a cabo una búsqueda primero en anchura de la porción aún no descubierta
+        de un grafo iniciando por s.
+        Los vértices descubiertos serán agregados al diccionario discovered como resultado.
+
+        Args:
+            s (Vertex): vértice de inicio.
+            discovered (Dict[Vertex, Edge]): es un diccionario que mapea cada vértice 
+            con el arco a través del que se lo encontró.
+        """
+        level : List[Vertex] = [s] # El primer nivel incluye solo a s
+        while len(level) > 0:
+            next_level : List[Vertex] = [] # preparamos para reunir los nuevos vértices.
+            for u in level:
+                # Para cada arco que sale de u
+                for e in self.incident_edges(u):  
+                    v = e.opposite(u) # obtengo el vértice en el otro extremo.
+                    if v not in discovered: # Si el vértice v ya no fue descubierto.
+                        discovered[v] = e   # e es el arco a partir del cual descubrí v.
+                        next_level.append(v) # agendo v para comenzar a explorar luego.
+            level = next_level # Hago el próximo nivel el actual.
