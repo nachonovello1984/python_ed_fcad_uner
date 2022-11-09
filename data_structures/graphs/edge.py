@@ -22,7 +22,7 @@ class Edge:
         return str(self)
         
     def __str__(self) -> str:
-        return f"destination: {self._destination}, element: {self._element}"
+        return f"origin: {self._origin} - destination: {self._destination}, element: {self._element}"
         
     def __eq__(self) -> bool:
         return (self._origin, self._destination) == (self._origin, self._destination)
