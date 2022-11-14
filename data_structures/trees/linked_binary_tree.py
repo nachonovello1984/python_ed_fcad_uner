@@ -85,6 +85,9 @@ class LinkedBinaryTree:
         Returns:
             Any: carga útil de la raíz.
         """
+        if self._root is None:
+            return None
+        
         return self._root.element
         
     def add_left_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
