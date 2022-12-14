@@ -238,6 +238,9 @@ class LinkedBinaryTree:
         Returns:
             bool: True si se encuentra. False en caso contrario.
         """
+        if self._root is None:
+            return False
+        
         return self._contains_rec(self._root, node)
         
     def _add_child(self, is_left: bool, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
