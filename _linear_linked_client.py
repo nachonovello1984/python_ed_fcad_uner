@@ -49,6 +49,9 @@ def linked_list_client() -> None:
     h2("LinkedList completo")
     print(lista)
     
+    h2("Accedo con índice negativo")
+    print(lista[-1])
+    
     h2("Recorrido de LinkedList")
     i = 0
     for item in lista:
@@ -58,6 +61,7 @@ def linked_list_client() -> None:
     del lista[len(lista)-1]
     del lista[len(lista)-1]
     lista[len(lista)//2] = 33
+    
         
     print(lista)
     

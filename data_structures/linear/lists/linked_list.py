@@ -68,8 +68,13 @@ class LinkedList:
         if self.is_empty():
             raise Exception("Operación no permitida si la estructura está vacía.")
 
-        if key < 0 or key >= self._size:
+        
+        if abs(key) >= self._size:
             raise Exception("Índice fuera de rango. No se puede continuar.")
+        
+        # Si el índice es negativo, calculo el valor que le corresponde
+        if key < 0:
+            key = len(self) - abs(key)
 
         i = 0
         actual = self._header.next # Inicio en el primer nodo.
