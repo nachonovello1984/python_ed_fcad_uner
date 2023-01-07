@@ -90,7 +90,7 @@ class LinkedListTest(unittest.TestCase):
 
             self.fail("__getitem__() tiene que arrojar una excepción cuando se intenta acceder a una posición que no existe.")
             
-        except Exception as exc:
+        except:
             self.assertTrue(True, "Siempre debería llegar aquí")
             
     def test_getitem_should_raise_exception2(self):
@@ -101,7 +101,7 @@ class LinkedListTest(unittest.TestCase):
 
             self.fail("__getitem__() tiene que arrojar una excepción cuando se intenta acceder a una posición que no existe.")
             
-        except Exception as exc:
+        except:
             self.assertTrue(True, "Siempre debería llegar aquí")
         
     def test_getitem_should_return_first(self):
@@ -132,7 +132,7 @@ class LinkedListTest(unittest.TestCase):
             linked_list = LinkedList()
             linked_list[4] = 0
             self.fail("__setitem__() tiene que arrojar una excepción cuando se intenta insertar un elemento en una posición que no existe.")
-        except Exception as exc:
+        except:
             self.assertTrue(True, "Siempre debería llegar aquí")
             
     def test_setitem_should_raise_exception2(self):
@@ -141,7 +141,7 @@ class LinkedListTest(unittest.TestCase):
             linked_list.append(1)
             linked_list[4] = 0
             self.fail("__setitem__() tiene que arrojar una excepción cuando se intenta insertar un elemento en una posición que no existe.")
-        except Exception as exc:
+        except:
             self.assertTrue(True, "Siempre debería llegar aquí")
     
     def test_setitem_should_change_value(self):
@@ -181,7 +181,7 @@ class LinkedListTest(unittest.TestCase):
             
             self.fail("__delitem__() tiene que arrojar una excepción cuando se intenta eliminar un elemento en una posición que no existe.")
             
-        except Exception as exc:
+        except:
             self.assertTrue(True, "Siempre debería llegar aquí.")
             
     def test_delitem_should_raise_exception2(self):
@@ -193,7 +193,7 @@ class LinkedListTest(unittest.TestCase):
             
             self.fail("__delitem__() tiene que arrojar una excepción cuando se intenta eliminar un elemento en una posición que no existe.")
             
-        except Exception as exc:
+        except:
             self.assertTrue(True, "Siempre debería llegar aquí.")
     
     def test_delitem_should_remove_first_element(self):
