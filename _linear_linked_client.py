@@ -41,7 +41,10 @@ def linked_list_client() -> None:
     """Pone a prueba LinkedList y todos sus métodos"""
     h1("LinkedList")
     lista = LinkedList()
-        
+    
+    h2("Lista vacía")
+    print(lista)
+    
     for i in range(1, 11):
         lista.append(i)
         print("lista.append({}): {} - len(lista): {}".format(i, i, len(lista)))
