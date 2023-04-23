@@ -89,7 +89,7 @@ class LinkedQueue:
         resultado = self._front
         self._front = self._front.next
         self._size -= 1
-        return resultado
+        return resultado.element
     
     def enqueue(self, elem: Any) -> None:
         """Agrega un elemento al final de la estructura.
