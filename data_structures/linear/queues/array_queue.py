@@ -8,7 +8,7 @@ class ArrayQueue:
     def __init__(self) -> None:
         """Crea una cola vacía"""
         self._data : list[Any] = [None] * ArrayQueue.DEFAULT_CAPACITY
-        self._front: int = -1
+        self._front: int = 0
         self._back: int = -1
         self._size : int = 0
     
