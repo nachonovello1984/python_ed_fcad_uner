@@ -75,7 +75,7 @@ class LinkedQueue:
         if self.is_empty(): 
             raise Exception("Estructura vacía. No se puede continuar")
         
-        return self._front.element
+        return self._front.element # type: ignore
     
     def dequeue(self) -> Any:
         """Remueve y devuelve el primer elemento de la cola.
@@ -87,9 +87,9 @@ class LinkedQueue:
             raise Exception("Estructura vacía. No se puede continuar")
         
         resultado = self._front
-        self._front = self._front.next
+        self._front = self._front.next # type: ignore
         self._size -= 1
-        return resultado.element
+        return resultado.element # type: ignore
     
     def enqueue(self, elem: Any) -> None:
         """Agrega un elemento al final de la estructura.
@@ -103,7 +103,7 @@ class LinkedQueue:
             self._front = nuevo_nodo
             self._back = nuevo_nodo
         else:
-            self._back.next = nuevo_nodo
-            self._back = self._back.next
+            self._back.next = nuevo_nodo # type: ignore
+            self._back = self._back.next # type: ignore
             
         self._size += 1

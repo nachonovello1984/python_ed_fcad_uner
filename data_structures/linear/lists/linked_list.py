@@ -149,10 +149,10 @@ class LinkedList:
 
         # Si previo existe => elimino el nodo actual haciendo que el siguiente del previo sea igual al siguiente de actual
         if previo: 
-            previo.next = actual.next
+            previo.next = actual.next # type: ignore
         else:
             # Si previo no existe => se está queriendo eliminar el primer nodo.
-            self._header.next = actual.next
+            self._header.next = actual.next # type: ignore
 
         self._size -= 1
 

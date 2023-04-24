@@ -69,7 +69,7 @@ class LinkedStack:
         if self.is_empty():
             raise Exception("Pila vacía. Operación no soportada")
         
-        return self._head.element
+        return self._head.element # type: ignore
         
     def pop(self) -> Any:
         """Quita y devuelve el elemento ubicado en el tope de la pila.
@@ -79,10 +79,10 @@ class LinkedStack:
             raise Exception("Pila vacía. Operación no soportada")
         
         #Dejo en resultado el valor a devolver.
-        resultado = self._head.element
+        resultado = self._head.element # type: ignore
         
         #Hago tope al siguiente al tope.
-        self._head = self._head.next
+        self._head = self._head.next # type: ignore
         self._size -= 1
         
         return resultado
