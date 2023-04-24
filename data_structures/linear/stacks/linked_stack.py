@@ -1,11 +1,11 @@
-from typing import Any, Union
+from typing import Any, Optional
 from ..list_node import ListNode
 
 class LinkedStack:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
     def __init__(self) -> None:
         """Crea una pila vacía"""
-        self._head : Union[ListNode, None] = None
+        self._head : Optional[ListNode] = None
         self._size : int = 0
 
     def __len__(self) -> int:

@@ -1,11 +1,11 @@
-from typing import Any
+from typing import Any, List
 
 class ArrayStack():
     """Implementación de Pila (E.D. tipo LIFO) utilizando una lista de Python para almacenar elementos."""
     
     def __init__(self) -> None:
         """Crea una pila vacía"""
-        self._data : list[Any] = []
+        self._data : List[Any] = []
     
     def __len__(self) -> int:
         """Devuelve el número de elementos en la Pila.

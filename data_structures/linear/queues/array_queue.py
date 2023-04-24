@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List
 
 class ArrayQueue:
     """Implementación de Cola (E.D. tipo FIFO) utilizando una lista de Python para almacenar elementos."""
@@ -7,7 +7,7 @@ class ArrayQueue:
     
     def __init__(self) -> None:
         """Crea una cola vacía"""
-        self._data : list[Any] = [None] * ArrayQueue.DEFAULT_CAPACITY
+        self._data : List[Any] = [None] * ArrayQueue.DEFAULT_CAPACITY
         self._front: int = 0
         self._back: int = -1
         self._size : int = 0

@@ -1,14 +1,12 @@
 from collections.abc import Sequence
-from typing import TypeVar, Generic
+from typing import Any, List
 
-T = TypeVar('T')
-
-class ArrayStack(Generic[T]):
+class ArrayStack():
     
     """Implementación de Pila (E.D. tipo LIFO) utilizando una lista de Python para almacenar elementos."""
     def __init__(self) -> None:
         """Crea una pila vacía"""
-        self._data: list[T] = [] 
+        self._data: List[Any] = [] 
     
     def __len__(self) -> int:
         """Devuelve el número de elementos en la Pila.
@@ -37,7 +35,7 @@ class ArrayStack(Generic[T]):
         """
         return len(self._data) == 0
     
-    def push(self, elem: T) -> None:
+    def push(self, elem: Any) -> None:
         """Agrega el elemento elem en el tope de la pila.
 
         Args:
@@ -45,7 +43,7 @@ class ArrayStack(Generic[T]):
         """
         self._data.append(elem) #Agrega elem al final de la lista.
         
-    def top(self) -> T:
+    def top(self) -> Any:
         """Devuelve (sin quitar) el elemento ubicado en el tope de la pila.
         Arroja una excepción si la pila está vacía.
         """
@@ -54,7 +52,7 @@ class ArrayStack(Generic[T]):
         
         return self._data[-1] # Devuelve el último elemento de la lista.
     
-    def pop(self) -> T:
+    def pop(self) -> Any:
         """Quita y devuelve el elemento ubicado en el tope de la pila.
         Arroja una excepción si la pila está vacía
         """

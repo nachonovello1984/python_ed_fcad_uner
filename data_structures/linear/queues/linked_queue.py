@@ -1,4 +1,4 @@
-from typing import Any, Union
+from typing import Any, Optional
 from ..list_node import ListNode
 
 class LinkedQueue:
@@ -6,8 +6,8 @@ class LinkedQueue:
     
     def __init__(self) -> None:
         """Crea una cola vacía"""
-        self._front: Union[ListNode, None] = None
-        self._back: Union[ListNode, None] = None
+        self._front: Optional[ListNode] = None
+        self._back: Optional[ListNode] = None
         self._size : int = 0
     
     def __len__(self) -> int:
