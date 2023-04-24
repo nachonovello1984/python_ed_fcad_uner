@@ -72,7 +72,7 @@ def linked_list_client() -> None:
     
     print(lista)
 
-if __name__ == "__main__" and __package__ is None:
+if __name__ == "__main__":
     linked_stack_client()
     linked_queue_client()
     linked_list_client()
