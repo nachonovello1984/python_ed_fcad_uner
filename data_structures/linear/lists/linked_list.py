@@ -68,7 +68,6 @@ class LinkedList:
         if self.is_empty():
             raise Exception("Operación no permitida si la estructura está vacía.")
 
-        
         if abs(key) >= self._size:
             raise Exception("Índice fuera de rango. No se puede continuar.")
         
@@ -76,16 +75,15 @@ class LinkedList:
         if key < 0:
             key = len(self) - abs(key)
 
-        res = None
         i = 0
         actual = self._header.next # Inicio en el primer nodo.
         while actual: # Si existe
             if i == key: # Si el valor de i coincide con el de key
-                res = actual.element #Devuelvo el valor del nodo en el que estoy ubicado.
+                return actual.element #Devuelvo el valor del nodo en el que estoy ubicado.
             actual = actual.next # Caso contrario continúo con el siguiente nodo.
             i += 1
 
-        return res
+        return None
     
     def __setitem__(self, key: int, value: Any) -> None:
         """Establece como nuevo elemento value para la posición de lista indicada por key.
@@ -114,6 +112,7 @@ class LinkedList:
         while actual: # Si el nodo existe...
             if i == key: # Verifico si el índice coincide con el pasado por parámetro
                 actual.element = value
+                return
             actual = actual.next
             i += 1
 
