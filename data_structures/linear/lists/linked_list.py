@@ -1,4 +1,4 @@
-from typing import Any, Union
+from typing import Any, Optional
 from ..list_node import ListNode
 
 class LinkedList:
@@ -53,7 +53,7 @@ class LinkedList:
         """
         return self.index_of(item) >= 0 # Si index_of devuelve un valor mayor o igual que cero => encontré el valor que estaba buscando.
 
-    def __getitem__(self, key: int) -> Union[Any, None]:
+    def __getitem__(self, key: int) -> Optional[Any]:
         """Devuelve el elemento ubicado en la posición key de la lista.
 
         Args:

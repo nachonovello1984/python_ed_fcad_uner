@@ -1,15 +1,15 @@
-from typing import Any, Union
+from typing import Any, Optional
 
 class BinaryTreeNode:
     """Nodo árbol binario con representación por enlaces."""
     
-    def __init__(self, element : Any, left_child: Union['BinaryTreeNode', None] = None, right_child: Union['BinaryTreeNode', None] = None) -> None:
+    def __init__(self, element : Any, left_child: Optional['BinaryTreeNode'] = None, right_child: Optional['BinaryTreeNode'] = None) -> None:
         """Crea un nuevo nodo binario.
 
         Args:
             element (Any): carga útil del nodo.
-            left_child (Union['BinaryTreeNode', None], optional): referencia al hijo izquierdo. Defaults to None.
-            right_child (Union['BinaryTreeNode', None], optional): referencia al hijo derecho. Defaults to None.
+            left_child (Optional['BinaryTreeNode'], optional): referencia al hijo izquierdo. Defaults to None.
+            right_child (Optional['BinaryTreeNode'], optional): referencia al hijo derecho. Defaults to None.
         """
         self.element = element
         self.left_child = left_child
