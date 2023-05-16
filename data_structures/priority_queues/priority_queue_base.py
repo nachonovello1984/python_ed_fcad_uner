@@ -22,6 +22,17 @@ class PriorityQueueBase:
             """
             return self._key < other._key
         
+        def __eq__(self, other: Any) -> bool:
+            """Compara los items por su propiedad key.
+
+            Args:
+                other (Any): objeto con el que hacer la comparación.
+
+            Returns:
+                bool: Devuelve verdadero si el objeto que recibe el mensaje es igual que el pasado por parámetro.
+            """
+            return self._key == other._key
+        
         def __repr__(self) -> str:
             """Convierte en str las propiedades del _Item.
 
