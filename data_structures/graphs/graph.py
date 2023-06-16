@@ -13,7 +13,7 @@ class Graph:
     def __init__(self, is_directed: bool) -> None:
         """ Configura una nueva instancia de Graph con dos diccionarios Python.
         Si el grafo es dirigido los dos diccionarios serán diferentes,
-        caso contrario uno es un alias del otro (). Es decir, son referencias al
+        caso contrario uno es un alias del otro. Es decir, son referencias al
         mismo objeto diccionario.
 
         Args:
@@ -23,10 +23,11 @@ class Graph:
         self._incoming: Dict[Vertex, Dict[Vertex, Edge]] = {} if is_directed else self._outgoing
 
     def __str__(self) -> str:
-        """_summary_
+        """Concatena en un string todos los datos de vértices y arcos.
 
         Returns:
-            str: _description_
+            str: concatenación resultante de analizar todos los vértices y arcos. 
+            Si el grafo está vacío entonces retorna el string Graph()
         """
         if not self.vertex_count():
             return "Graph()"
@@ -169,7 +170,9 @@ class Graph:
         e = Edge(u, v, x)
         # Lo registro en _outgoing e _incoming.
         self._outgoing[u][v] = e
-        self._incoming[v][u] = e
+        if not self.is_directed(): # Diferente a la bibliografía. Aquí está corregido.
+            self._incoming[v][u] = e
+            
 
     def dfs(self, u: Vertex) -> Dict[Vertex, Edge | None]:
         """ Realiza una búsqueda primero en profundidad (DFS) el el grafo comenzando por el nodo u.
