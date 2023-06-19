@@ -102,6 +102,10 @@ class Graph:
             Edge: arista que conecta u y v (en ese órden)
         """
         # Siempre busco en _outgoing en el órden de los parámetros.
+
+        self._validate_vertex(u)
+        self._validate_vertex(v)
+
         return self._outgoing[u].get(v)   # type: ignore
 
     def degree(self, v: Vertex, outgoing: bool = True) -> int:
@@ -116,6 +120,8 @@ class Graph:
             int: número de aristas que entran/salen de v.
         """
         # Determino el diccionario sobre el que hacer el análisis y se lo asigno a adj.
+        self._validate_vertex(v)
+
         adj = self._outgoing if outgoing else self._incoming
 
         # Devuelvo la cantidad de entradas en el diccionario.
@@ -133,6 +139,9 @@ class Graph:
             Generator[Edge, None, None]: devuelve generator con todos las aristas que entran/salen de v.
         """
         # Determino el diccionario sobre el que se quiere hacer el análisis.
+
+        self._validate_vertex(v)
+        
         adj = self._outgoing if outgoing else self._incoming
 
         # Obtengo todos las aristas del diccionario referenciado por adj.
@@ -276,7 +285,22 @@ class Graph:
     #########################################################################
     #							MÉTODOS NO PÚBLICOS
     #########################################################################
+    def _validate_vertex(self, v: Vertex) -> None :
+        """Verifica que v sea un vértice de este grafo.
+
+        Args:
+            v (Vertex): Vértice que se pretende analizar.
+
+        Raises:
+            TypeError: si el vértice no es una instancia de Vertex
+            ValueError: si el vértice no pertence a este grafo.
+        """
+        if not isinstance(v, Vertex):
+            raise TypeError('Se esperaba un objeto de clase Vertex')
         
+        if v not in self._outgoing:
+            raise ValueError('El vértice no pertenece a este grafo.')
+
     def _dfs(self, u : Vertex, discovered : Dict[Vertex, Edge | None]) -> None:
         """ Realiza la búsqueda utilizando un algoritmo recursivo y dejando los nodos 
         visitados en discovered.
