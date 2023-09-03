@@ -8,5 +8,6 @@ setup(
     version='1.0.0',
     author='nacho <nacho.novello@gmail.com>'
     install_requires=[],
-    extras_require={}
+    extras_require={},
+    keywords=['python', 'data structures', 'graph', 'trees', 'stack', 'queue']
 )
