@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any, Optional, Iterable
 from ..list_node import ListNode
 
 class LinkedList:
@@ -155,7 +155,7 @@ class LinkedList:
 
         self._size -= 1
 
-    def __iter__(self):
+    def __iter__(self) -> Iterable[Any]:
         """Crea un iterador sobre la lista.
 
         Yields:

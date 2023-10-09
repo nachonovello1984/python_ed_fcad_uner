@@ -74,5 +74,5 @@ def linked_list_client() -> None:
 
 if __name__ == "__main__":
     linked_stack_client()
-    linked_queue_client()
-    linked_list_client()
+    # linked_queue_client()
+    # linked_list_client()

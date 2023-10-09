@@ -8,7 +8,7 @@ class LinkedQueue:
         """Crea una cola vacía"""
         self._front: Optional[ListNode] = None
         self._back: Optional[ListNode] = None
-        self._size : int = 0
+        self._size: int = 0
     
     def __len__(self) -> int:
         """Devuelve el número de elementos en la estructura.

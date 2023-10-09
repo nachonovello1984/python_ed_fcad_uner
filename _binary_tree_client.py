@@ -20,12 +20,12 @@ print(f"{' ÁRBOL COMPLETO ':*^60}")
 print(tree)
 
 
-# print(f"{' RECORRIDO EN PREORDEN ':*^60}")
+print(f"{' RECORRIDO EN PREORDEN ':*^60}")
 
-# for item in tree.preorder_traversal():
-#     print(item, end=", ")
+for item in tree.preorder_traversal():
+    print(item, end=", ")
     
-# print("")
+print("")
 
 # print(f"{' QUITANDO NODOS ':*^60}")
 

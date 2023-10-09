@@ -1,4 +1,4 @@
-from typing import Any, Iterable
+from typing import Any, Iterable, Optional
 from ..linear.queues import LinkedQueue
 from .binary_tree_node import BinaryTreeNode
 
@@ -11,7 +11,7 @@ class LinkedBinaryTree:
         
     def __init__(self) -> None:
         """Crea un nuevo árbol binario vacío."""
-        self._root : BinaryTreeNode | None = None
+        self._root : Optional[BinaryTreeNode] = None
         self._size : int = 0
         
     def __len__(self) -> int:
@@ -90,20 +90,20 @@ class LinkedBinaryTree:
         
         return self._root.element
         
-    def add_left_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
+    def add_left_child(self, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode) -> None:
         """Agrega un hijo izquierdo al nodo especificado como padre.
 
         Args:
-            parent (BinaryTreeNode): padre del nodo a insertar.
+            parent (Optional[BinaryTreeNode]): padre del nodo a insertar.
             new_node (BinaryTreeNode): nodo a insertar.
         """
         self._add_child(True, parent, new_node)
     
-    def add_right_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
+    def add_right_child(self, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode) -> None:
         """Agrega un hijo derecho al nodo especificado como padre.
 
         Args:
-            parent (BinaryTreeNode): padre del nodo a insertar.
+            parent (Optional[BinaryTreeNode]): padre del nodo a insertar.
             new_node (BinaryTreeNode): nodo a insertar.
         """
         self._add_child(False, parent, new_node)
@@ -163,8 +163,8 @@ class LinkedBinaryTree:
         else:
             # Si el nodo a eliminar tiene dos hijos
             replace_node = self._search_replace(node)
-            self.remove(replace_node)
-            node.element = replace_node.element
+            self.remove(replace_node) #type: ignore
+            node.element = replace_node.element #type: ignore
             
         self._size -= 1
         
@@ -183,11 +183,11 @@ class LinkedBinaryTree:
     #							MÉTODOS NO PÚBLICOS
     #########################################################################
         
-    def _preorder_traversal(self, node : BinaryTreeNode | None): 
+    def _preorder_traversal(self, node : Optional[BinaryTreeNode]): 
         """Realiza un recorrido en preorden desde el node.
 
         Args:
-            node (BinaryTreeNode): nodo desde donde inicia el recorrido en preorden.
+            node (Optional[BinaryTreeNode]): nodo desde donde inicia el recorrido en preorden.
 
         Yields:
             Any: Devuelve el elemento de cada nodo.
@@ -198,7 +198,7 @@ class LinkedBinaryTree:
             yield from self._preorder_traversal(node.left_child)
             yield from self._preorder_traversal(node.right_child)
     
-    def _inorder_traversal(self, node: BinaryTreeNode | None) -> Iterable[Any]:
+    def _inorder_traversal(self, node: Optional[BinaryTreeNode]) -> Iterable[Any]:
         
         if node:
             yield from self._preorder_traversal(node.left_child)
@@ -243,12 +243,12 @@ class LinkedBinaryTree:
         
         return self._contains_rec(self._root, node)
         
-    def _add_child(self, is_left: bool, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
+    def _add_child(self, is_left: bool, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode) -> None:
         """Agrega un new_node como hijo de parent.
 
         Args:
             is_left (bool): indica si new_node es hijo izquierdo o derecho de parent.
-            parent (BinaryTreeNode): nodo padre.
+            parent (Optional[BinaryTreeNode]): nodo padre.
             new_node (BinaryTreeNode): nuevo nodo a agregar.
 
         Raises:
@@ -283,14 +283,14 @@ class LinkedBinaryTree:
             
         self._size += 1
             
-    def _search_parent(self, search: BinaryTreeNode) -> BinaryTreeNode | None:
+    def _search_parent(self, search: BinaryTreeNode) -> Optional[BinaryTreeNode]:
         """Busca el padre del nodo search.
 
         Args:
             search (BinaryTreeNode): nodo del que se busca su padre.
 
         Returns:
-            BinaryTreeNode | None: nodo padre o None en caso que search sea raíz.
+            Optional[BinaryTreeNode]: nodo padre o None en caso que search sea raíz.
         """
         # Agrego la raíz a una cola
         queue = LinkedQueue()
@@ -319,16 +319,19 @@ class LinkedBinaryTree:
             
         return None
     
-    def _search_replace(self, node: BinaryTreeNode) -> BinaryTreeNode:
+    def _search_replace(self, node: BinaryTreeNode) -> Optional[BinaryTreeNode]:
         """Busca como reemplazo el nodo ubicado más a la izquierda del subárbol derecho de node.
 
         Args:
             node (BinaryTreeNode): nodo desde donde comenzar la búsqueda.
 
         Returns:
-            BinaryTreeNode: Nodo más a la izquierda del subárbol derecho de node.
+            Optional[BinaryTreeNode]: Nodo más a la izquierda del subárbol derecho de node.
         """
         actual = node.right_child
+
+        if actual is None:
+            return actual
         
         while actual.left_child:
             actual = actual.left_child
