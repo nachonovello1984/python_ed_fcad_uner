@@ -30,7 +30,7 @@ class ArrayHeap(PriorityQueueBase):
         Returns:
             str: string formado por la concatenación de todos los ítems del heap.
         """
-        return self.__repr__()
+        return repr(self)
 
     def __len__(self) -> int:
         """Devuelve la cantidad de nodos de la estructura.

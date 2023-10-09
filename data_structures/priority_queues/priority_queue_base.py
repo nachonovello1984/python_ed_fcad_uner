@@ -47,12 +47,4 @@ class PriorityQueueBase:
             Returns:
                 str: Ídem __repr__()
             """
-            return self.__repr__()
-        
-        def is_empty(self) -> bool:
-            """Indica si el _Item está vacío.
-
-            Returns:
-                bool: Si la longitud es 0 devuelve True.
-            """
-            return len(self) == 0
+            return repr(self)

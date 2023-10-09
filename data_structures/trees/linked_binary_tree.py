@@ -47,7 +47,7 @@ class LinkedBinaryTree:
         Returns:
             str: string formado por la concatenación de todos los nodos.
         """
-        return self.__repr__()
+        return repr(self)
     
     def __iter__(self) -> Iterable[Any]:
         """Itera por niveles la estructura.
@@ -124,6 +124,7 @@ class LinkedBinaryTree:
             raise Exception ("El nodo pasado por parámetro no pertenece a la estructura.")
         
         parent = self._search_parent(node)
+        
         # Si no tiene nodos hijos..
         if node.children_count() == 0: 
             # Si el nodo a eliminar tiene padre
