@@ -12,7 +12,6 @@ class ArrayHeap(PriorityQueueBase):
         """Crea un nuevo Heap"""
         self._data = []
         
-        
     def __repr__(self) -> str:
         """Convierte en un string todos los nodos del heap.
 

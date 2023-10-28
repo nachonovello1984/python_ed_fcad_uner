@@ -53,6 +53,7 @@ class UnsortedTableMap(MapBase):
         for item in self._table:
             if k == item._key:
                 return item._value
+        
         raise KeyError('Key Error: ' + repr(k))
     
     def __setitem__(self, k : Any, v: Any) -> None:
