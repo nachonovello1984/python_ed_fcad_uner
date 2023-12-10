@@ -152,7 +152,7 @@ class Graph:
         """ Crea un vértice x en el grafo y lo devuelve.
 
         Args:
-            x (Any | None, optional): _description_. Defaults to None.
+            x (Any): elemento a almacenar en el vértice.
 
         Returns:
             Vertex: _description_
@@ -264,7 +264,7 @@ class Graph:
         self._bfs(s, discovered)
         return discovered
     
-    def BFS_complete(self) -> Dict[Vertex, Edge | None]:
+    def bfs_complete(self) -> Dict[Vertex, Edge | None]:
         """ Lleva a cabo una búsqueda primero en anchura en todo el grafo
         Como resultao
 

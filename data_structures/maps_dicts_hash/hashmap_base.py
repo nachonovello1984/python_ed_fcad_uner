@@ -18,7 +18,7 @@ class HashMapBase(MapBase, ABC):
             cap (int, optional): _description_. Defaults to 11.
             p (int, optional): _description_. Defaults to 109345121.
         """
-        self._table : List[Any | None] = cap * [None]
+        self._table : List[Optional[Any]] = cap * [None]
         self._n = 0 # número de entradas en el mapeo.
         self._prime = p # número primo para compresión MAD
         self._scale = 1 + randrange(p - 1) # escala de 1 a p - 1 para MAD
