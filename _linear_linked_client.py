@@ -57,7 +57,7 @@ def linked_list_client() -> None:
     
     h2("Recorrido de LinkedList")
     i = 0
-    for item in lista:
+    for item in lista: # type: ignore
         print(f"lista[{i}]: {item}")
         i += 1
 
@@ -73,6 +73,6 @@ def linked_list_client() -> None:
     print(lista)
 
 if __name__ == "__main__":
-    linked_stack_client()
+    # linked_stack_client()
     # linked_queue_client()
-    # linked_list_client()
+    linked_list_client()
