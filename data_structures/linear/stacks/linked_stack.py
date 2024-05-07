@@ -30,7 +30,7 @@ class LinkedStack:
 
         #Me quedo en actual con el elemento ubicado en el tope     
         actual = self._head
-        while actual != None:
+        while actual:
             # proceso el elemento del nodo actual
             resultado += str(actual.element) + ", "
             # establezco el siguiente nodo como nodo actual
@@ -79,10 +79,10 @@ class LinkedStack:
             raise Exception("Pila vacía. Operación no soportada")
         
         #Dejo en resultado el valor a devolver.
-        resultado = self._head.element # type: ignore
+        res = self._head.element # type: ignore
         
         #Hago tope al siguiente al tope.
         self._head = self._head.next # type: ignore
         self._size -= 1
         
-        return resultado
+        return res

@@ -27,7 +27,7 @@ class ArrayQueue:
             str: string con todos los elementos que contiene la estructura.
         """
         #Convierto todos los elementos en la lista a str.
-        str_lista = [str(elem) for elem in self._data if elem != None]
+        str_lista = [str(elem) for elem in self._data if elem is not None]
                 
         return "ArrayQueue(" + ", ".join(str_lista) + ")"
         

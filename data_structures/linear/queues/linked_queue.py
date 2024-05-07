@@ -86,10 +86,15 @@ class LinkedQueue:
         if self.is_empty():
             raise Exception("Estructura vacía. No se puede continuar")
         
-        resultado = self._front
+        res = self._front.element # type: ignore
         self._front = self._front.next # type: ignore
         self._size -= 1
-        return resultado.element # type: ignore
+
+        # Para cuando ya no queden elementos hago None _back
+        if self._size == 0:
+            self._back = None
+
+        return res
     
     def enqueue(self, elem: Any) -> None:
         """Agrega un elemento al final de la estructura.
