@@ -36,7 +36,8 @@ class BinaryTreeNode:
             str: concatena en un str el elemento del nodo.
         """
         return f"[{self.element}]"
-        
+
+    @property  
     def children_count(self) -> int:
         """Devuelve la cantidad de hijos del nodo.
 

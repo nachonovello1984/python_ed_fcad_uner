@@ -126,7 +126,7 @@ class LinkedBinaryTree:
         parent = self._search_parent(node)
         
         # Si no tiene nodos hijos..
-        if node.children_count() == 0: 
+        if node.children_count == 0: 
             # Si el nodo a eliminar tiene padre
             if parent:
                 # Si el nodo es hijo izquierdo...
@@ -137,7 +137,7 @@ class LinkedBinaryTree:
             else: # Si el nodo a eliminar no tiene padre
                 self._root = None
                     
-        elif node.children_count() == 1: # Si el nodo a eliminar tiene 1 hijo...
+        elif node.children_count == 1: # Si el nodo a eliminar tiene 1 hijo...
             # Si el nodo a eliminar tiene padre...
             if parent:
                 # Si el nodo es hijo izquierdo...
