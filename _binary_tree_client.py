@@ -27,12 +27,13 @@ arbol_letras.add_right_child(nodo_f, nodo_k)
 arbol_letras.add_left_child(nodo_k, nodo_m)
 arbol_letras.add_right_child(nodo_k, nodo_n)
 
-print(f"{' RECORRIDO EN PREORDEN ':*^60}")
+print(f"{' RECORRIDO POR NIVELES ':*^60}")
+print(*[item for item in arbol_letras], sep=", ", end=".")  # type: ignore
 
-for item in arbol_letras.preorder_traversal():
-    print(item, end=", ")
-    
-print("")
+print()
+
+print(f"{' RECORRIDO EN PREORDEN ':*^60}")
+print(*[item for item in arbol_letras.preorder_traversal()], sep=", ", end=".")  # type: ignore
 
 # node_25 = BinaryTreeNode(25)
 # node_15 = BinaryTreeNode(15)
