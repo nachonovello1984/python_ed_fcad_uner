@@ -64,7 +64,7 @@ class ArrayHeap(PriorityQueueBase):
 			Exception: arroja excepción si la estructura está vacía.
    
    		Returns:
-			Tuple[Any]: retorna una tupla formada por la clave y valor del nodo.
+			Tuple[Any, Any]: retorna una tupla formada por la clave y valor del nodo.
 
 		"""
         if self.is_empty():
