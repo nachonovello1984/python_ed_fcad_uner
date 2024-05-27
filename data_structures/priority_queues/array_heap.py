@@ -75,6 +75,9 @@ class ArrayHeap(PriorityQueueBase):
 
     def remove_min(self) -> Tuple[Any, Any]:
         """Quita el nodo con menor valor de clave.
+
+        Returns:
+			Tuple[Any, Any]: retorna una tupla formada por la clave y valor del nodo.
         
         Raises:
 			Exception: Arroja excepción si la estructura está vacía.
