@@ -33,7 +33,11 @@ print(*[item for item in arbol_letras], sep=", ", end=".")  # type: ignore
 print()
 
 print(f"{' RECORRIDO EN PREORDEN ':*^60}")
-print(*[item for item in arbol_letras.preorder_traversal()], sep=", ", end=".")  # type: ignore
+for item in arbol_letras.preorder_traversal():
+    print(item, end=", ")
+
+# print(f"{' RECORRIDO EN PREORDEN ':*^60}")
+# print(*[item for item in arbol_letras.preorder_traversal()], sep=", ", end=".")  # type: ignore
 
 # node_25 = BinaryTreeNode(25)
 # node_15 = BinaryTreeNode(15)

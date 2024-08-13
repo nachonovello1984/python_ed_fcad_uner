@@ -208,6 +208,15 @@ class LinkedBinaryTree:
             
             yield from self._preorder_traversal(node.right_child)
     
+    def _postorder_traversal(self, node: Optional[BinaryTreeNode]) -> Iterable[Any]:
+        
+        if node:
+            yield from self._preorder_traversal(node.left_child)
+            
+            yield from self._preorder_traversal(node.right_child)
+
+            yield node.element
+    
     def _contains_rec(self, current: BinaryTreeNode, search: BinaryTreeNode) -> bool:
         """Verifica recursivamente si un nodo pertenece a la estructura.
 
