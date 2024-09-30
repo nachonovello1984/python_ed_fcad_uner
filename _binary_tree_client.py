@@ -13,7 +13,7 @@ nodo_m = BinaryTreeNode('M')
 nodo_n = BinaryTreeNode('N')
 
 arbol_letras = LinkedBinaryTree()
-arbol_letras.add_left_child(None, nodo_a)
+arbol_letras.add_root(nodo_a)
 arbol_letras.add_left_child(nodo_a, nodo_b)
 arbol_letras.add_left_child(nodo_b, nodo_c)
 arbol_letras.add_right_child(nodo_b, nodo_d)

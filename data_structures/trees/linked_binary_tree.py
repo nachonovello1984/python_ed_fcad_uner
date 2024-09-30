@@ -89,6 +89,21 @@ class LinkedBinaryTree:
             return None
         
         return self._root.element
+    
+    def add_root(self, new_node: BinaryTreeNode) -> None:
+        """Establece el nodo pasado por parámetro como raíz del árbol.
+
+        Args:
+            new_node (BinaryTreeNode): nodo que se convertirá en raíz del árbol.
+
+        Raises:
+            Exception: arroja excepción cuando se intenta establecer una raíz para un árbol no vacío.
+        """
+        if not self.is_empty():
+            raise Exception ("El árbol no está vacío. No se puede definir una nueva raíz")
+        
+        self._root = new_node
+        self._size += 1
         
     def add_left_child(self, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode) -> None:
         """Agrega un hijo izquierdo al nodo especificado como padre.
@@ -265,31 +280,27 @@ class LinkedBinaryTree:
             Exception: arroja excepciones si los parámetros son incorrectos.
         """
         if self.is_empty():
-            
-            if parent:
-                raise Exception ("No se puede agregar un nodo y su padre si la estructura está vacía.")
+            raise Exception ("Operación no permitida si el árbol está vacío.")
 
-            self._root = new_node
+        if not parent:
+            raise Exception ("No se puede agregar un nodo sin padre si la estructura está vacía.")
+    
+        if not self._contains(parent):
+            raise Exception ("El nodo padre no pertenece al árbol")
+    
+        if self._contains(new_node):
+            raise Exception ("El nuevo nodo ya pertenece al árbol")
+    
+        if parent.left_child and is_left:
+            raise Exception ("El nodo padre ya tiene un hijo izquierdo.")
+        
+        if parent.right_child and not is_left:
+            raise Exception ("El nodo padre ya tiene un hijo derecho.")
+    
+        if is_left: 
+            parent.left_child = new_node
         else:
-            if not parent:
-                raise Exception ("No se puede agregar un nodo sin padre si la estructura está vacía.")
-        
-            if not self._contains(parent):
-                raise Exception ("El nodo padre no pertenece al árbol")
-        
-            if self._contains(new_node):
-                raise Exception ("El nuevo nodo ya pertenece al árbol")
-        
-            if parent.left_child and is_left:
-                raise Exception ("El nodo padre ya tiene un hijo izquierdo.")
-            
-            if parent.right_child and not is_left:
-                raise Exception ("El nodo padre ya tiene un hijo derecho.")
-        
-            if is_left: 
-                parent.left_child = new_node
-            else:
-                parent.right_child = new_node
+            parent.right_child = new_node
             
         self._size += 1
             
