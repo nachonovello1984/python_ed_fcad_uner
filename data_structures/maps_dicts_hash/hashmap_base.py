@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, List
+from typing import Any, List, Optional
 from random import randrange
 from .map_base import MapBase
 
