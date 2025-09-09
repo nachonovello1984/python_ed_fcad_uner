@@ -22,13 +22,13 @@ class ArrayStack():
             str: string con todos los elementos que contiene la pila.
         """
         #Convierto todos los elementos en la lista a str (en orden invertido).
-        #str_lista = [str(elem) for elem in self._data[::-1]]
-                
-        res = ""
-        for elem in self._data[::-1]:
-            res += str(elem) + ", "
+        # res = ""
+        # for elem in self._data[::-1]:
+        #     res += str(elem) + ", "
         
-        return "ArrayStack(" + res + ")"
+        str_lista = [str(elem) for elem in self._data[::-1]]
+
+        return "ArrayStack(" + ", ".join(str_lista) + ")"
     
     def is_empty(self) -> bool:
         """Indica si la pila está vacía
@@ -51,7 +51,7 @@ class ArrayStack():
         Arroja una excepción si la pila está vacía.
         """
         if self.is_empty():
-            raise Exception("La pila está vacía. La operación no se puede llevar a cabo.")
+            raise IndexError("La pila está vacía. La operación no se puede llevar a cabo.")
         
         return self._data[-1] # Devuelve el último elemento de la lista.
     
@@ -60,6 +60,6 @@ class ArrayStack():
         Arroja una excepción si la pila está vacía
         """
         if self.is_empty():
-            raise Exception("La pila está vacía")
+            raise IndexError("La pila está vacía")
         
         return self._data.pop() # Quita el último elemento de la lista.

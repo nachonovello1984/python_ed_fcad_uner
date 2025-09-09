@@ -199,6 +199,14 @@ class LinkedBinaryTree:
 
     def inorder_traversal(self) -> Iterable[Any]:
         return self._inorder_traversal(self._root)
+    
+    def postorder_traversal(self) -> Iterable[Any]:
+        """Recorrido en postorden del árbol.
+
+        Returns:
+            Iterable[Any]: Devuelve un iterador en postorden.
+        """
+        return self._postorder_traversal(self._root) 
 
     def vertical_str(self) -> str:
 

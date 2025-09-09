@@ -67,7 +67,7 @@ class LinkedStack:
         Arroja una excepción si la pila está vacía.
         """
         if self.is_empty():
-            raise Exception("Pila vacía. Operación no soportada")
+            raise IndexError("Pila vacía. Operación no soportada")
         
         return self._head.element # type: ignore
         
@@ -76,7 +76,7 @@ class LinkedStack:
         Arroja una excepción si la pila está vacía
         """
         if self.is_empty():
-            raise Exception("Pila vacía. Operación no soportada")
+            raise IndexError("Pila vacía. Operación no soportada")
         
         #Dejo en resultado el valor a devolver.
         res = self._head.element # type: ignore

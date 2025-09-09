@@ -73,7 +73,7 @@ class LinkedQueue:
         """
         
         if self.is_empty(): 
-            raise Exception("Estructura vacía. No se puede continuar")
+            raise IndexError("Estructura vacía. No se puede continuar")
         
         return self._front.element # type: ignore
     
@@ -84,7 +84,7 @@ class LinkedQueue:
             Any: valor ubicado en el frente de la estructura.
         """
         if self.is_empty():
-            raise Exception("Estructura vacía. No se puede continuar")
+            raise IndexError("Estructura vacía. No se puede continuar")
         
         res = self._front.element # type: ignore
         self._front = self._front.next # type: ignore

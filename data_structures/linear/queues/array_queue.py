@@ -58,7 +58,7 @@ class ArrayQueue:
         """
         
         if self.is_empty(): 
-            raise Exception("Estructura vacía. No se puede continuar")
+            raise IndexError("Estructura vacía. No se puede continuar")
         
         return self._data[self._front]
     
@@ -69,7 +69,7 @@ class ArrayQueue:
             Any: valor ubicado en el frente de la estructura.
         """
         if self.is_empty():
-            raise Exception("Estructura vacía. No se puede continuar")
+            raise IndexError("Estructura vacía. No se puede continuar")
         
         resultado = self._data[self._front]
         self._data[self._front] = None
@@ -87,7 +87,7 @@ class ArrayQueue:
             Exception: Arroja excepción si la estructura está llena.
         """
         if self.is_full():
-            raise Exception ("Estructura llena. No se puede continuar")
+            raise OverflowError("Estructura llena. No se puede continuar")
         
         self._back = self._incrementar(self._back)
         self._data[self._back] = elem
