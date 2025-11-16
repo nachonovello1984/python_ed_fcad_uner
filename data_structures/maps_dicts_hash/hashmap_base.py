@@ -21,8 +21,9 @@ class HashMapBase(MapBase, ABC):
         self._table : List[Optional[Any]] = cap * [None]
         self._n = 0 # número de entradas en el mapeo.
         self._prime = p # número primo para compresión MAD
-        self._scale = 1 + randrange(p - 1) # escala de 1 a p - 1 para MAD
+        self._scale = 1 + randrange(p - 1) # escala de 1 a p - 1 para MAD. Debe ser mayor que cero.
         self._shift = randrange(p) # variación de 0 a p - 1 para MAD
+        # self._scale y self._shift son enteros elegidos al azar.
         
     @abstractmethod
     def _bucket_getitem(self, j : int , k : Any) -> Any:

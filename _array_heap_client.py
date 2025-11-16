@@ -13,4 +13,5 @@ print(f"{' VACIADO DE HEAP ':*^60}")
 
 while not heap.is_empty():
     print("heap.min():", heap.min())
+    print("heap:", heap)
     heap.remove_min()

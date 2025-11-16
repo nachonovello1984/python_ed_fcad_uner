@@ -39,5 +39,5 @@ def array_queue_client() -> None:
         
 
 if __name__ == '__main__':  
-    array_stack_client()
+    # array_stack_client()
     array_queue_client()

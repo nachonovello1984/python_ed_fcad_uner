@@ -33,7 +33,7 @@ class ProbeHashMap(HashMapBase):
 
     def _find_slot(self, j: int, k: Any) -> Tuple[bool, int]:
         """ Busca una posición a través de prueba lineal de una clave k cuya función hash retornó j.
-        Indica si la posición está ocupada o no y cual es la posición disponible.
+        Indica si la posición está ocupada o no y cuál es la posición disponible.
 
         Args:
             j (int): inicia como la posición calculada por la función hash. El parámetro también se utiliza para guardar el resultado de las distintas iteraciones de la prueba lineal.

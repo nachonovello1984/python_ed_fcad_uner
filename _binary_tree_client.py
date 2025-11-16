@@ -89,7 +89,7 @@ print()
 print(f"{' Graficar árbol con TKINTER ':*^60}")
 import tkinter as tk
 
-def draw_tree(canvas, node, x, y, x_offset, y_offset):
+def draw_tree(canvas: tk.Canvas, node: BinaryTreeNode, x: int, y: int, x_offset: int, y_offset: int) -> None:
     if node is None:
         return
 
@@ -106,12 +106,19 @@ def draw_tree(canvas, node, x, y, x_offset, y_offset):
     canvas.create_oval(x - 15, y - 15, x + 15, y + 15, fill='lightblue')
     canvas.create_text(x, y, text=node.element, font=('Arial', 12))
 
+ancho_pantalla = 600
+alto_pantalla = 400   
+
 root_window = tk.Tk()
 root_window.title('Árbol Binario')
-canvas = tk.Canvas(root_window, width=600, height=400, bg='white')
+canvas = tk.Canvas(root_window, width=ancho_pantalla, height=alto_pantalla, bg='white')
 canvas.pack()
 
+centro = ancho_pantalla // 2
+espaciado_horizontal = 100
+espaciado_vertical = 60
+
 # Dibujar el árbol en el canvas
-draw_tree(canvas, nodo_a, 300, 50, 100, 60)
+draw_tree(canvas, nodo_a, centro, 50, espaciado_horizontal, espaciado_vertical)
 
 root_window.mainloop()
