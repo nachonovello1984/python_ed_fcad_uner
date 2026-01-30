@@ -1,4 +1,4 @@
-# Estructuras de Datos en Python - FCAD | UNER
+# Programación III: Estructuras de Datos en Python - FCAD | UNER
 Este proyecto sirve tanto de ejemplo de implementación de las Estructuras de Datos típicas como de base para realizar las actividades de las asignatura.
 
 ## Implementaciones
@@ -7,6 +7,7 @@ Este proyecto sirve tanto de ejemplo de implementación de las Estructuras de Da
 - [ ] Estructuras de Datos Jerárquicas de Grado N: Apuntadores al padre, Lista de hijos, Hijo izquierdo - Hermano Derecho. 
 - [x] Árboles Binarios y Heap mínimo.
 - [x] Mapas, Diccionarios y conjuntos.
+- [x] Árboles Binarios.
 - [ ] Árboles ABB y AVL.
 - [ ] Árboles multivía.
-- [ ] Grafos: No dirigido. Implementación: Matriz de adyacencia.
+- [x] Grafos. Implementación: Mapeo de adyacencia.

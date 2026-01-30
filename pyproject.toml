@@ -1,15 +1,21 @@
 [tool.poetry]
 name = "python-ed-fcad-uner"
-version = "0.1.0"
-description = ""
-authors = ["nacho <nacho.novello@gmail.com>"]
+version = "0.1.1"
+description = "Paquete de implementación de estructuras de datos para la asignatura de Programación III de la FCAD-UNER"
+authors = ["Nacho Novello <ignacio.novello@uner.edu.ar>"]
+license = "GPL-3.0-or-later"
 readme = "README.md"
 packages = [{include = "data_structures"}]
+repository = "https://github.com/nachonovello1984/python_ed_fcad_uner"
+keywords = ["data_structures", "python", "data structures", "graph", "trees", "stack", "queue", "pilas", "colas", "árboles"]
+exclude = ["*_client.py"]
 
 [tool.poetry.dependencies]
 python = ">=3.10"
 
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+omit = ["*_client.py"]
