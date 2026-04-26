@@ -1,6 +1,8 @@
 # Programación III: Estructuras de Datos en Python - FCAD | UNER
 Este proyecto sirve tanto de ejemplo de implementación de las Estructuras de Datos típicas como de base para realizar las actividades de las asignatura.
 
+Todas las implementaciones están basadas en el libro. Data Structures & Algorithms in Python. Autores: Michael T. Goodrich, Roberto Tamassia y Michael H. Goldwasser. ISBN: 978-1-118-29027-9.
+
 ## Implementaciones
 
 - [x] Estructuras de Datos Lineales: Listas, Pilas, Colas e Iteradores.

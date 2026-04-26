@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-ed-fcad-uner"
-version = "0.1.1"
+version = "0.1.2"
 description = "Paquete de implementación de estructuras de datos para la asignatura de Programación III de la FCAD-UNER"
 authors = ["Nacho Novello <ignacio.novello@uner.edu.ar>"]
 license = "GPL-3.0-or-later"
