@@ -1,10 +1,9 @@
 from ..trees import BinaryTreeNode
 from ..trees import LinkedBinaryTree
-from typing import Tuple, Any, Optional
 
-class LinkedBinarySearchTree(LinkedBinaryTree):
+class LinkedBinarySearchTree[T](LinkedBinaryTree):
 
-    def add_left_child(self, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode) -> None:
+    def add_left_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
         """ Método no permitido ya que no aplica a la definición del tipo
 
         Args:
@@ -16,7 +15,7 @@ class LinkedBinarySearchTree(LinkedBinaryTree):
         """
         raise NotImplementedError("Este método no está permitido en LinkedBinarySearchTree.")
     
-    def add_right_child(self, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode) -> None:
+    def add_right_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
         """ Método no permitido ya que no aplica a la definición del tipo
 
         Args:
@@ -40,11 +39,11 @@ class LinkedBinarySearchTree(LinkedBinaryTree):
         """
         raise NotImplementedError("Este método no está permitido en LinkedBinarySearchTree.")
 
-    def __contains__(self, element: Any) -> bool:
+    def __contains__(self, element: T) -> bool:
        res, _, _ = self._search(None, self._root, BinaryTreeNode(element))
        return res
 
-    def add_element(self, element: Any) -> None:
+    def add_element(self, element: T) -> None:
         new_node = BinaryTreeNode(element)
         if self.is_empty():
             self._root = new_node
@@ -60,7 +59,7 @@ class LinkedBinarySearchTree(LinkedBinaryTree):
         
         self._size += 1 
 
-    def remove_element(self, element: Any) -> None:
+    def remove_element(self, element: T) -> None:
         res, _, eliminar = self._search(None, self._root, BinaryTreeNode(element))
         
         if not res:
@@ -72,7 +71,7 @@ class LinkedBinarySearchTree(LinkedBinaryTree):
     #							MÉTODOS NO PÚBLICOS
     #########################################################################        
             
-    def _search(self, parent: Optional[BinaryTreeNode], current: BinaryTreeNode, search: BinaryTreeNode) -> Tuple[bool, Optional[BinaryTreeNode], Optional[BinaryTreeNode]]:
+    def _search(self, parent: BinaryTreeNode | None, current: BinaryTreeNode, search: BinaryTreeNode) -> tuple[bool, BinaryTreeNode | None, BinaryTreeNode | None]:
         if current is None:
             return (False, parent, current)
 

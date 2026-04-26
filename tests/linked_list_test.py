@@ -261,9 +261,9 @@ class LinkedListTest(unittest.TestCase):
         linked_list.append(3)
         
         iter = linked_list.__iter__()
-        self.assertEquals(iter.__next__(), 1, "__iter__() no funciona como se esperaba (1).")
-        self.assertEquals(iter.__next__(), 2, "__iter__() no funciona como se esperaba (2).")
-        self.assertEquals(iter.__next__(), 3, "__iter__() no funciona como se esperaba (3).")
+        self.assertEqual(iter.__next__(), 1, "__iter__() no funciona como se esperaba (1).")
+        self.assertEqual(iter.__next__(), 2, "__iter__() no funciona como se esperaba (2).")
+        self.assertEqual(iter.__next__(), 3, "__iter__() no funciona como se esperaba (3).")
 
     ################
     ################

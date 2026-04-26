@@ -1,25 +1,25 @@
-from typing import Any, Optional
+from __future__ import annotations
 
-class BinaryTreeNode:
+class BinaryTreeNode[T]:
     """Nodo árbol binario con representación por enlaces."""
     
-    def __init__(self, element : Any, left_child: Optional['BinaryTreeNode'] = None, right_child: Optional['BinaryTreeNode'] = None) -> None:
+    def __init__(self, element : T, left_child: BinaryTreeNode[T] | None = None, right_child: BinaryTreeNode[T] | None = None) -> None:
         """Crea un nuevo nodo binario.
 
         Args:
-            element (Any): carga útil del nodo.
-            left_child (Optional['BinaryTreeNode'], optional): referencia al hijo izquierdo. Defaults to None.
-            right_child (Optional['BinaryTreeNode'], optional): referencia al hijo derecho. Defaults to None.
+            element (T): carga útil del nodo.
+            left_child (BinaryTreeNode[T] | None, optional): referencia al hijo izquierdo. Defaults to None.
+            right_child (BinaryTreeNode[T] | None, optional): referencia al hijo derecho. Defaults to None.
         """
         self.element = element
         self.left_child = left_child
         self.right_child = right_child
     
-    def __eq__(self, other: 'BinaryTreeNode') -> bool:
+    def __eq__(self, other: 'BinaryTreeNode[T]') -> bool:
         """Verifica si un nodo es igual a otro.
 
         Args:
-            other (BinaryTreeNode): nodo para comprar
+            other (BinaryTreeNode[T]): nodo para comprar
 
         Returns:
             bool: True si el elemento de los dos nodos es igual. False en caso contrario.

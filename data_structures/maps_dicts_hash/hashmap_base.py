@@ -1,24 +1,28 @@
 from abc import ABC, abstractmethod
-from typing import Any, List, Optional
+from typing import Generic, TypeVar
 from random import randrange
 from .map_base import MapBase
+from ..common import SupportsLowerThan
 
-class HashMapBase(MapBase, ABC):
+K = TypeVar("K", bound=SupportsLowerThan)
+V = TypeVar("V")
+
+class HashMapBase[K, V](MapBase[K, V], ABC):
     """ Clase abstracta que configura la interfaz de tabla hash.
 
     Args:
-        MapBase: _description_
-        ABC: _description_
+        MapBase: hereda los métodos de MapBase y de su superclase MutableMapping (de Python).
+        ABC: para marcar HashMapBase como abstracta.
     """
     
     def __init__(self, cap=11, p=109345121) -> None:
-        """_summary_
+        """ Crea una tabla hash con capacidad cap y número primo p para la función de compresión MAD.
 
         Args:
             cap (int, optional): _description_. Defaults to 11.
             p (int, optional): _description_. Defaults to 109345121.
         """
-        self._table : List[Optional[Any]] = cap * [None]
+        self._table : list[dict[K, V] | None] = cap * [None] # type: ignore . Tabla hash con capacidad cap. Cada posición de la tabla puede ser un diccionario Python o None.
         self._n = 0 # número de entradas en el mapeo.
         self._prime = p # número primo para compresión MAD
         self._scale = 1 + randrange(p - 1) # escala de 1 a p - 1 para MAD. Debe ser mayor que cero.
@@ -26,7 +30,7 @@ class HashMapBase(MapBase, ABC):
         # self._scale y self._shift son enteros elegidos al azar.
         
     @abstractmethod
-    def _bucket_getitem(self, j : int , k : Any) -> Any:
+    def _bucket_getitem(self, j : int , k : K) -> V:
         """ Método abstracto que define cómo se encuentra 
         un valor en la posición j y con clave k.
 
@@ -40,7 +44,7 @@ class HashMapBase(MapBase, ABC):
         pass
     
     @abstractmethod
-    def _bucket_setitem(self, j : int, k : Any, v : Any) -> None:
+    def _bucket_setitem(self, j : int, k : K, v : V) -> None:
         """ Método abstracto que define cómo se inserta/modifica 
         una entrada en la posición j y con clave k.
 
@@ -52,7 +56,7 @@ class HashMapBase(MapBase, ABC):
         pass
     
     @abstractmethod
-    def _bucket_delitem(self, j : int, k : Any) -> None:
+    def _bucket_delitem(self, j : int, k : K) -> None:
         """ Método abstracto que define cómo se elimina
         una entrada en la posición j y con clave k.
 
@@ -62,7 +66,7 @@ class HashMapBase(MapBase, ABC):
         """
         pass
         
-    def _hash_function(self, k : Any) -> int:
+    def _hash_function(self, k : K) -> int:
         """Aplica la función hash sobre la clave k y luego función de compresión MAD.
 
         Args:
@@ -81,7 +85,7 @@ class HashMapBase(MapBase, ABC):
         """
         return self._n
     
-    def __getitem__(self, k : Any) -> Any:
+    def __getitem__(self, k : K) -> V:
         """ Devuelve el valor asociado a la clave k.
 
         Args:
@@ -96,12 +100,12 @@ class HashMapBase(MapBase, ABC):
         # Intenta obtener el valor asociado a k en j.
         return self._bucket_getitem(j, k)
     
-    def __setitem__(self, k : Any, v : Any) -> None:
+    def __setitem__(self, k : K, v : V) -> None:
         """ Inserta/Modifica en el Mapeo la entrada con valor v y clave k.
 
         Args:
-            k (Any): clave que se quiere insertar/modificar. 
-            v (Any): valor que se quiere insertar/modificar
+            k (K): clave que se quiere insertar/modificar. 
+            v (V): valor que se quiere insertar/modificar
         """
         # Calcula el índice a través de la función hash.
         j = self._hash_function(k)
@@ -115,11 +119,11 @@ class HashMapBase(MapBase, ABC):
             # Redimensiona la tabla.
             self._resize(2 * len(self._table) - 1)
             
-    def __delitem__(self, k : Any) -> None:
+    def __delitem__(self, k : K) -> None:
         """ Elimina la entrada con clave k del mapeo.
 
         Args:
-            k (Any): clave cuya entrada se quiere eliminar del mapeo.
+            k (K): clave cuya entrada se quiere eliminar del mapeo.
         """
         # Calcula el índice a través de la función hash.
         j = self._hash_function(k)
@@ -137,7 +141,7 @@ class HashMapBase(MapBase, ABC):
         old = list(self.items()) 
         
         # Reinicio la tabla a la capacidad especificada.
-        self._table : List[Any | None]= c * [None] 
+        self._table : list[dict[K, V] | None] = c * [None] # type: ignore . Redimensiona la tabla a la nueva capacidad c. Cada posición de la tabla puede ser un diccionario Python o None.
         
         #Reinicio el valor de v a 0.
         self._n = 0

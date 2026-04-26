@@ -1,11 +1,9 @@
-from typing import Any, List
-
-class ArrayStack():
+class ArrayStack[T]:
     """Implementación de Pila (E.D. tipo LIFO) utilizando una lista de Python para almacenar elementos."""
     
     def __init__(self) -> None:
         """Crea una pila vacía"""
-        self._data : List[Any] = []
+        self._data : list[T] = []
     
     def __len__(self) -> int:
         """Devuelve el número de elementos en la Pila.
@@ -38,15 +36,15 @@ class ArrayStack():
         """
         return len(self._data) == 0
     
-    def push(self, elem: Any) -> None:
+    def push(self, elem: T) -> None:
         """Agrega el elemento elem en el tope de la pila.
 
         Args:
-            elem (Any): Nuevo elemento que se va agregar a la pila.
+            elem (T): Nuevo elemento que se va agregar a la pila.
         """
         self._data.append(elem) #Agrega elem al final de la lista.
         
-    def top(self) -> Any:
+    def top(self) -> T:
         """Devuelve (sin quitar) el elemento ubicado en el tope de la pila.
         Arroja una excepción si la pila está vacía.
         """
@@ -55,7 +53,7 @@ class ArrayStack():
         
         return self._data[-1] # Devuelve el último elemento de la lista.
     
-    def pop(self) -> Any:
+    def pop(self) -> T:
         """Quita y devuelve el elemento ubicado en el tope de la pila.
         Arroja una excepción si la pila está vacía
         """

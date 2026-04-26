@@ -1,9 +1,9 @@
-from typing import Any, Iterable, Optional, Tuple, List
+from typing import Iterable
 from ..linear.queues import LinkedQueue
 from .binary_tree_node import BinaryTreeNode
 
 
-class LinkedBinaryTree:
+class LinkedBinaryTree[T]:
     """Implementación enlazada de Árbol Binario."""
 
     #########################################################################
@@ -12,7 +12,7 @@ class LinkedBinaryTree:
 
     def __init__(self) -> None:
         """Crea un nuevo árbol binario vacío."""
-        self._root: Optional[BinaryTreeNode] = None
+        self._root: BinaryTreeNode | None = None
         self._size: int = 0
 
     def __len__(self) -> int:
@@ -50,11 +50,11 @@ class LinkedBinaryTree:
         """
         return repr(self)
 
-    def __iter__(self) -> Iterable[Any]:
+    def __iter__(self) -> Iterable[T]:
         """Itera por niveles la estructura.
 
         Yields
-            Iterator[Iterable[Any]]: yield del elemento de todos los nodos que va visitando.
+            Iterator[Iterable[T]]: yield del elemento de todos los nodos que va visitando.
         """
         queue = LinkedQueue()
         queue.enqueue(self._root)
@@ -80,11 +80,11 @@ class LinkedBinaryTree:
         """
         return self._size == 0
 
-    def root(self) -> Any:
+    def root(self) -> T | None:
         """Devuelve el elemento de la raíz del árbol.
 
         Returns:
-            Any: carga útil de la raíz.
+            T | None: carga útil de la raíz.
         """
         if self.is_empty():
             return None
@@ -108,7 +108,7 @@ class LinkedBinaryTree:
         self._root = new_node
         self._size += 1
 
-    def add_left_child(self, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode) -> None:
+    def add_left_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
         """Agrega un hijo izquierdo al nodo especificado como padre.
 
         Args:
@@ -117,7 +117,7 @@ class LinkedBinaryTree:
         """
         self._add_child(True, parent, new_node)
 
-    def add_right_child(self, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode) -> None:
+    def add_right_child(self, parent: BinaryTreeNode | None, new_node: BinaryTreeNode) -> None:
         """Agrega un hijo derecho al nodo especificado como padre.
 
         Args:
@@ -189,18 +189,18 @@ class LinkedBinaryTree:
 
         self._size -= 1
 
-    def preorder_traversal(self) -> Iterable[Any]:
+    def preorder_traversal(self) -> Iterable[T]:
         """Recorrido en preorden del árbol.
 
         Returns:
-            Iterable[Any]: Devuelve un iterador que comienza por el nodo raíz.
+            Iterable[T]: Devuelve un iterador que comienza por el nodo raíz.
         """
         return self._preorder_traversal(self._root)
 
-    def inorder_traversal(self) -> Iterable[Any]:
+    def inorder_traversal(self) -> Iterable[T]:
         return self._inorder_traversal(self._root)
     
-    def postorder_traversal(self) -> Iterable[Any]:
+    def postorder_traversal(self) -> Iterable[T]:
         """Recorrido en postorden del árbol.
 
         Returns:
@@ -238,7 +238,7 @@ class LinkedBinaryTree:
 
         return res
 
-    def _preorder_traversal(self, node: Optional[BinaryTreeNode]):
+    def _preorder_traversal(self, node: BinaryTreeNode | None) -> Iterable[T]:
         """Realiza un recorrido en preorden desde el node.
 
         Args:
@@ -253,21 +253,21 @@ class LinkedBinaryTree:
             yield from self._preorder_traversal(node.left_child)
             yield from self._preorder_traversal(node.right_child)
 
-    def _inorder_traversal(self, node: Optional[BinaryTreeNode]) -> Iterable[Any]:
+    def _inorder_traversal(self, node: BinaryTreeNode | None) -> Iterable[T]:
 
         if node:
-            yield from self._preorder_traversal(node.left_child)
+            yield from self._inorder_traversal(node.left_child)
 
             yield node.element
 
-            yield from self._preorder_traversal(node.right_child)
+            yield from self._inorder_traversal(node.right_child)
 
-    def _postorder_traversal(self, node: Optional[BinaryTreeNode]) -> Iterable[Any]:
+    def _postorder_traversal(self, node: BinaryTreeNode | None) -> Iterable[T]:
 
         if node:
-            yield from self._preorder_traversal(node.left_child)
+            yield from self._postorder_traversal(node.left_child)
 
-            yield from self._preorder_traversal(node.right_child)
+            yield from self._postorder_traversal(node.right_child)
 
             yield node.element
 
@@ -308,7 +308,7 @@ class LinkedBinaryTree:
         return self._contains_rec(self._root, node)
 
     def _add_child(
-        self, is_left: bool, parent: Optional[BinaryTreeNode], new_node: BinaryTreeNode
+        self, is_left: bool, parent: BinaryTreeNode | None, new_node: BinaryTreeNode
     ) -> None:
         """Agrega un new_node como hijo de parent.
 
@@ -347,14 +347,14 @@ class LinkedBinaryTree:
 
         self._size += 1
 
-    def _search_parent(self, search: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+    def _search_parent(self, search: BinaryTreeNode) -> BinaryTreeNode | None:
         """Busca el padre del nodo search.
 
         Args:
             search (BinaryTreeNode): nodo del que se busca su padre.
 
         Returns:
-            Optional[BinaryTreeNode]: nodo padre o None en caso que search sea raíz.
+            BinaryTreeNode | None: nodo padre o None en caso que search sea raíz.
         """
         # Agrego la raíz a una cola
         queue = LinkedQueue()
@@ -383,14 +383,14 @@ class LinkedBinaryTree:
 
         return None
 
-    def _search_replace(self, node: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+    def _search_replace(self, node: BinaryTreeNode) -> BinaryTreeNode | None:
         """Busca como reemplazo el nodo ubicado más a la izquierda del subárbol derecho de node.
 
         Args:
             node (BinaryTreeNode): nodo desde donde comenzar la búsqueda.
 
         Returns:
-            Optional[BinaryTreeNode]: Nodo más a la izquierda del subárbol derecho de node.
+            BinaryTreeNode | None: Nodo más a la izquierda del subárbol derecho de node.
         """
         actual = node.right_child
 

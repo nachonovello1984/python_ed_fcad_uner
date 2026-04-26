@@ -1,7 +1,7 @@
-from typing import Any, Optional
+from typing import Optional
 from ..list_node import ListNode
 
-class LinkedStack:
+class LinkedStack[T]:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
     def __init__(self) -> None:
         """Crea una pila vacía"""
@@ -49,11 +49,11 @@ class LinkedStack:
         """
         return self._size == 0
     
-    def push(self, elem: Any) -> None:
+    def push(self, elem: T) -> None:
         """Agrega el elemento elem en el tope de la pila.
 
         Args:
-            elem (Any): Nuevo elemento que se va agregar a la pila.
+            elem (T): Nuevo elemento que se va agregar a la pila.
         """
         #nuevo_tope tiene como siguiente al actual tope (self._head)
         nuevo_tope = ListNode(elem, self._head)
@@ -62,18 +62,28 @@ class LinkedStack:
         self._head = nuevo_tope
         self._size += 1
         
-    def top(self) -> Any:
+    def top(self) -> T:
         """Devuelve (sin quitar) el elemento ubicado en el tope de la pila.
-        Arroja una excepción si la pila está vacía.
+
+        Raises:
+            IndexError: Arroja error cuando se intenta consultar el tope de una pila vacía.
+
+        Returns:
+            T: Elemento ubicado en el tope de la pila.
         """
         if self.is_empty():
             raise IndexError("Pila vacía. Operación no soportada")
         
         return self._head.element # type: ignore
         
-    def pop(self) -> Any:
+    def pop(self) -> T:
         """Quita y devuelve el elemento ubicado en el tope de la pila.
-        Arroja una excepción si la pila está vacía
+
+        Raises:
+            IndexError: Arroja error cuando se intenta quitar un elemento de una pila vacía.
+
+        Returns:
+            T: Elemento ubicado en el tope de la pila que se remueve tras la llamada a esta operación.
         """
         if self.is_empty():
             raise IndexError("Pila vacía. Operación no soportada")

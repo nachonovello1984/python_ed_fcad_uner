@@ -1,13 +1,11 @@
-from typing import Any, List
-
-class ArrayQueue:
+class ArrayQueue[T]:
     """Implementación de Cola (E.D. tipo FIFO) utilizando una lista de Python para almacenar elementos."""
     
     DEFAULT_CAPACITY : int = 10
     
     def __init__(self) -> None:
         """Crea una cola vacía"""
-        self._data : List[Any] = [None] * ArrayQueue.DEFAULT_CAPACITY
+        self._data : list[T | None] = [None] * ArrayQueue.DEFAULT_CAPACITY
         self._front: int = 0
         self._back: int = -1
         self._size : int = 0
@@ -47,14 +45,14 @@ class ArrayQueue:
         """
         return self._size == len(self._data)
     
-    def first(self) -> Any:
+    def first(self) -> T | None:
         """Devuelve (sin quitar) el elemento ubicado en el frente de la cola."
 
         Raises:
             Exception: Arroja excepción si la estructura está vacía.
 
         Returns:
-            Any: Devuelve el elemento más antigüo en orden de inserción.
+            T: Devuelve el elemento más antigüo en orden de inserción.
         """
         
         if self.is_empty(): 
@@ -62,11 +60,11 @@ class ArrayQueue:
         
         return self._data[self._front]
     
-    def dequeue(self) -> Any:
-        """Remueve y devuelve el primer elemento de la cola.
+    def dequeue(self) -> T | None:
+        """ Remueve y devuelve el primer elemento de la cola.
 
         Returns:
-            Any: valor ubicado en el frente de la estructura.
+            T | None: valor ubicado en el frente de la estructura.
         """
         if self.is_empty():
             raise IndexError("Estructura vacía. No se puede continuar")
@@ -77,17 +75,17 @@ class ArrayQueue:
         self._size -= 1
         return resultado
     
-    def enqueue(self, elem: Any) -> None:
-        """Agrega un elemento al final de la estructura.
+    def enqueue(self, elem: T) -> None:
+        """ Agrega un elemento al final de la estructura.
 
         Args:
-            elem (Any): Nuevo elemento al final de la estructura.
+            elem (T): Nuevo elemento al final de la estructura.
 
         Raises:
             Exception: Arroja excepción si la estructura está llena.
         """
         if self.is_full():
-            raise OverflowError("Estructura llena. No se puede continuar")
+            self._resize(2 * len(self._data))  # Redimensionar si es necesario
         
         self._back = self._incrementar(self._back)
         self._data[self._back] = elem
@@ -95,3 +93,20 @@ class ArrayQueue:
     
     def _incrementar(self, x : int) -> int:
         return (x + 1) % len(self._data)
+    
+    def _resize(self, capacidad: int) -> None:
+        """ Redimensiona la lista subyacente a una nueva capacidad.
+
+        Args:
+            capacidad (int): _description_
+        """
+        anterior = self._data
+        self._data = [None] * capacidad
+        paso = self._front
+        
+        # Copiar elementos en orden
+        for k in range(self._size):
+            self._data[k] = anterior[paso]
+            paso = (paso + 1) % len(anterior)
+        
+        self._front = 0  # Resetear front

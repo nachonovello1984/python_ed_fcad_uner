@@ -1,7 +1,12 @@
-from typing import Any, Tuple, Generator
+from typing import Generic, TypeVar, Generator
+from ..common import SupportsLowerThan
 from .hashmap_base import HashMapBase
 
-class ProbeHashMap(HashMapBase):
+K = TypeVar("K", bound=SupportsLowerThan)
+V = TypeVar("V")
+
+
+class ProbeHashMap[K, V](HashMapBase):
     """ Implementa una Tabla Hash que utiliza direccionamiento abierto como
     técnica de resolución de colisiones a través de la Prueba Lineal.
 
@@ -31,13 +36,13 @@ class ProbeHashMap(HashMapBase):
         """
         return self._table[j] is None or self._table[j] is ProbeHashMap._AVAIL
 
-    def _find_slot(self, j: int, k: Any) -> Tuple[bool, int]:
+    def _find_slot(self, j: int, k: K) -> tuple[bool, int]:
         """ Busca una posición a través de prueba lineal de una clave k cuya función hash retornó j.
         Indica si la posición está ocupada o no y cuál es la posición disponible.
 
         Args:
             j (int): inicia como la posición calculada por la función hash. El parámetro también se utiliza para guardar el resultado de las distintas iteraciones de la prueba lineal.
-            k (Any): clave que se está buscando.
+            k (K): clave que se está buscando.
 
         Returns:
             Tuple[bool, int]: el primer valor indica si la posición está disponible y el segundo cuál es el subíndice disponible.
@@ -59,18 +64,18 @@ class ProbeHashMap(HashMapBase):
                 return (True, j)  # se encontró una coincidencia.
             j = (j + 1) % len(self._table)  # continúa buscando (de manera cíclica)
 
-    def _bucket_getitem(self, j : int, k : Any) -> Any:
+    def _bucket_getitem(self, j : int, k : K) -> V:
         """ Devuelve el valor asociado a la clave k en la posición j
 
         Args:
             j (int): posición donde se comienza a buscar la entrada para k
-            k (Any): clave cuyo valor se busca.
+            k (K): clave cuyo valor se busca.
 
         Raises:
             KeyError: arroja error si no se encuentra una entrada con clave k en la tabla.
 
         Returns:
-            Any: retorna el valor asociado a la clave k.
+            V: retorna el valor asociado a la clave k.
         """
         # Utiliza self._find_slot para determinar si la posición está ocupada o no.
         found, s = self._find_slot(j, k)
@@ -79,13 +84,13 @@ class ProbeHashMap(HashMapBase):
         
         return self._table[s]._value # type: ignore
 
-    def _bucket_setitem(self, j: int, k : Any, v : Any) -> None:
+    def _bucket_setitem(self, j: int, k : K, v : V) -> None:
         """ Inserta/actualiza el valor asociado para la entrada con clave k.
 
         Args:
             j (int): posición resultando de la función hash sobre k.
-            k (Any): clave cuya entrada se quiere insertar/actualizar.
-            v (Any): valor a insertar/actualizar.
+            k (K): clave cuya entrada se quiere insertar/actualizar.
+            v (V): valor a insertar/actualizar.
         """
         # Busca la k en la tabla.
         found, s = self._find_slot(j, k)
@@ -96,12 +101,12 @@ class ProbeHashMap(HashMapBase):
         else:
             self._table[s]._value = v # type: ignore . Sobreescribe el valor existente.
 
-    def _bucket_delitem(self, j: int, k: Any) -> None:
+    def _bucket_delitem(self, j: int, k: K) -> None:
         """ Elimina la entrada con clave k y posición j.
 
         Args:
             j (int): posición resultando de la función hash sobre k.
-            k (Any): clave cuya entrada se quiere eliminar.
+            k (K): clave cuya entrada se quiere eliminar.
 
         Raises:
             KeyError: arroja excepción cuando no se encuentra una posición para k en la tabla.
@@ -112,11 +117,11 @@ class ProbeHashMap(HashMapBase):
         
         self._table[s] = ProbeHashMap._AVAIL # marca como disponible la posición indicada por s
 
-    def __iter__(self) -> Generator[Any, None, None]:
+    def __iter__(self) -> Generator[K, None, None]:
         """ Devuelve un generator sobre self._table.
 
         Yields:
-            Generator[Any, None, None]: devuelve todas las claves del Mapeo.
+            Generator[K, None, None]: devuelve todas las claves del Mapeo.
         """
         for j in range(len(self._table)): # accede a todos los elementos de la tabla.
             if not self._is_available(j):

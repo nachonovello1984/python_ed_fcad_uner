@@ -1,7 +1,7 @@
-from typing import Any, Optional
+from typing import Optional
 from ..list_node import ListNode
 
-class LinkedQueue:
+class LinkedQueue[T]:
     """Implementación de Cola (E.D. tipo FIFO) utilizando representación por enlaces."""
     
     def __init__(self) -> None:
@@ -62,14 +62,14 @@ class LinkedQueue:
         """
         return False
     
-    def first(self) -> Any:
+    def first(self) -> T:
         """Devuelve (sin quitar) el elemento ubicado en el frente de la cola."
 
         Raises:
             Exception: Arroja excepción si la estructura está vacía.
 
         Returns:
-            Any: Devuelve el elemento más antigüo en orden de inserción.
+            T: Devuelve el elemento más antigüo en orden de inserción.
         """
         
         if self.is_empty(): 
@@ -77,11 +77,11 @@ class LinkedQueue:
         
         return self._front.element # type: ignore
     
-    def dequeue(self) -> Any:
+    def dequeue(self) -> T:
         """Remueve y devuelve el primer elemento de la cola.
 
         Returns:
-            Any: valor ubicado en el frente de la estructura.
+            T: valor ubicado en el frente de la estructura.
         """
         if self.is_empty():
             raise IndexError("Estructura vacía. No se puede continuar")
@@ -96,11 +96,11 @@ class LinkedQueue:
 
         return res
     
-    def enqueue(self, elem: Any) -> None:
+    def enqueue(self, elem: T) -> None:
         """Agrega un elemento al final de la estructura.
 
         Args:
-            elem (Any): Nuevo elemento al final de la estructura.
+            elem (T): Nuevo elemento al final de la estructura.
         """
         nuevo_nodo = ListNode(elem, None)
         

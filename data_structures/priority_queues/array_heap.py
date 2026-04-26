@@ -1,7 +1,8 @@
 from typing import Any, Tuple
 from .priority_queue_base import PriorityQueueBase
+from ..common import SupportsLowerThan
 
-class ArrayHeap(PriorityQueueBase):
+class ArrayHeap[K : SupportsLowerThan, V](PriorityQueueBase[K, V]):
     """ Implementa una cola de prioridad mínima con un heap binario."""
     
     #########################################################################

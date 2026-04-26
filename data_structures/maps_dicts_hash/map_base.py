@@ -1,8 +1,12 @@
 from abc import ABC
-from typing import Any
 from collections.abc import MutableMapping
+from typing import Generic, TypeVar
+from ..common import SupportsLowerThan
 
-class MapBase(MutableMapping, ABC):
+K = TypeVar("K", bound=SupportsLowerThan)
+V = TypeVar("V")
+
+class MapBase[K, V](MutableMapping, ABC):
     """ Clase abstracta genérica que define la clase anidada _Item
 
     Args:
@@ -10,12 +14,12 @@ class MapBase(MutableMapping, ABC):
         ABC: para marcar MapBase como abstracta
     """
     
-    class _Item:
+    class _Item(Generic[K, V]): #type: ignore
         """ Define una asociación clave - valor """
         
         __slots__ = '_key', '_value'
         
-        def __init__(self, k: Any, v: Any) -> None:
+        def __init__(self, k: K, v: V) -> None:
             self._key = k
             self._value = v
             
@@ -27,25 +31,25 @@ class MapBase(MutableMapping, ABC):
             """
             return f"({self._key}, {self._value})"
             
-        def __eq__(self, other) -> bool: #type: ignore
+        def __eq__(self, other: 'MapBase._Item') -> bool: 
             """ Dos _Item son iguales si tienen la misma clave.
 
             Args:
-                other (_Item): Se espera que other sea de tipo _Item.
+                other (MapBase._Item): Se espera que other sea de tipo _Item.
 
             Returns:
                 bool: True si las claves son iguales. False en caso contrario.
             """                
             return self._key == other._key
         
-        def __ne__(self, other) -> bool:
+        def __ne__(self, other: 'MapBase._Item') -> bool:
             return not (self == other)
         
-        def __lt__(self, other) -> bool: #type: ignore
+        def __lt__(self, other: 'MapBase._Item') -> bool: #type: ignore
             """Método utilizado para ordenar las claves en implementaciones de Mapeos ordenados.
 
             Args:
-                other (_Item): instancia con la que comparar.
+                other (MapBase._Item): instancia con la que comparar.
 
             Returns:
                 bool: True si el objeto que recibe la llamada es menor que el pasado por parámetro.

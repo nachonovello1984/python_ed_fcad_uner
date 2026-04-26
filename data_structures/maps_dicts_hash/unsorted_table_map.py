@@ -1,7 +1,8 @@
 from typing import Generator, List, Any
 from .map_base import MapBase
+from ..common import SupportsLowerThan
 
-class UnsortedTableMap(MapBase):
+class UnsortedTableMap[K: SupportsLowerThan, V](MapBase[K, V]):
     """ Implementa un Mapeo utilizando una lista built-in Python.
     Los elementos se insertan al final y luego se buscan al momento de hacer operaciones de consulta/mutación por su clave.
 
