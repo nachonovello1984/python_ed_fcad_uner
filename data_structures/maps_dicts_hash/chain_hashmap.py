@@ -1,4 +1,4 @@
-from typing import Any, List, Generator
+from collections.abc import Iterable
 from .hashmap_base import HashMapBase
 from .unsorted_table_map import UnsortedTableMap
 
@@ -11,7 +11,7 @@ class ChainHashMap[K, V](HashMapBase):
     
     def __init__(self, cap=11, p=109345121) -> None:
         """ Invoca al constructor de HashMapBase, define que 
-        self._table es de tipo List que contiene buckets de tipo UnsortedTableMap y 
+        self._table es de tipo list que contiene buckets de tipo UnsortedTableMap y 
         la inicializa con elementos de tipo None.
 
         Args:
@@ -19,7 +19,7 @@ class ChainHashMap[K, V](HashMapBase):
             p (int, optional): _description_. Defaults to 109345121.
         """
         super().__init__(cap, p)
-        self._table : List[UnsortedTableMap | None] = [None] * cap
+        self._table : list[UnsortedTableMap | None] = [None] * cap
         
     def __str__(self) -> str:
         """ Convierte en str cada uno de los buckets y los concatena en un único str.
@@ -91,22 +91,22 @@ class ChainHashMap[K, V](HashMapBase):
         # Elimina la clave k del bucket.
         del bucket[k]
         
-    def __iter__(self) -> Generator[K, None, None]:
-        """ Devuelve un generator sobre self._table 
+    def __iter__(self) -> Iterable[K]:
+        """ Devuelve un iterable sobre self._table 
 
         Yields:
-            Generator[K, None, None]: devuelve todas las claves del Mapeo.
+            Iterable[K]: devuelve todas las claves del Mapeo.
         """
         for bucket in self._table:
             if bucket is not None:
                 for key in bucket:
                     yield key
                     
-    def iter_items(self) -> Generator[UnsortedTableMap, None, None]:
-        """ Devuelve un generator sobre el Mapeo que devuelve todos los ítems.
+    def iter_items(self) -> Iterable[UnsortedTableMap]:
+        """ Devuelve un iterable sobre el Mapeo que devuelve todos los ítems.
 
-        Yields:
-            Generator[UnsortedTableMap, None, None]: devuelve los mapeos de toda la tabla.
+        Returns:
+            Iterable[UnsortedTableMap]: devuelve los mapeos de toda la tabla.
         """
         for bucket in self._table:
             if bucket is not None:

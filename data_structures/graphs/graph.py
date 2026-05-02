@@ -1,4 +1,4 @@
-from typing import Generator
+from collections.abc import Iterable
 from .vertex import Vertex
 from .edge import Edge
 
@@ -126,16 +126,16 @@ class Graph[T]:
         # Devuelvo la cantidad de entradas en el diccionario.
         return len(adj[v])
 
-    def incident_edges(self, v: Vertex[T], outgoing: bool = True) -> Generator[Edge[T], None, None]:
-        """ Devuelve un generator con todos las aristas que entran / salen de v.
+    def incident_edges(self, v: Vertex[T], outgoing: bool = True) -> Iterable[Edge[T]]:
+        """ Devuelve un iterable con todos las aristas que entran / salen de v.
 
         Args:
             v (Vertex[T]): vértice del que se quieren obtener las aristas
             outgoing (bool, optional): True si se quieren obtener las aristas que salen de v.
             Caso contrario los de entrada. Valor por defecto True.
 
-        Yields:
-            Generator[Edge[T], None, None]: devuelve generator con todos las aristas que entran/salen de v.
+        Returns:
+            Iterable[Edge[T]]: devuelve un iterable con todos las aristas que entran/salen de v.
         """
         # Determino el diccionario sobre el que se quiere hacer el análisis.
 

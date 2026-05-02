@@ -1,4 +1,4 @@
-from typing import Iterable
+from collections.abc import Iterable
 from ..linear.queues import LinkedQueue
 from .binary_tree_node import BinaryTreeNode
 

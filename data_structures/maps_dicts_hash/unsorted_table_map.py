@@ -1,4 +1,5 @@
-from typing import Generator, List, Any
+from collections.abc import Iterable
+
 from .map_base import MapBase
 from ..common import SupportsLowerThan
 
@@ -12,7 +13,7 @@ class UnsortedTableMap[K: SupportsLowerThan, V](MapBase[K, V]):
     
     def __init__(self) -> None:
         """ Crea la lista Python donde se almacenarán todas las entradas como una lista vacía. """
-        self._table : List[MapBase._Item] = []
+        self._table : list[MapBase._Item] = []
         
     def __len__(self) -> int:
         """ Devuelve la cantidad de entradas en el Mapeo.
@@ -39,17 +40,17 @@ class UnsortedTableMap[K: SupportsLowerThan, V](MapBase[K, V]):
         res = ", ".join([str(x) for x in self.iter_items()])
         return f"UnsortedTableMap({res})"
         
-    def __getitem__(self, k: Any) -> Any:
+    def __getitem__(self, k: K) -> V:
         """ Devuelve el valor asociado a la clave k en el Mapeo.
 
         Args:
-            k (Any): clave del ítem que hay que buscar.
+            k (K): clave del ítem que hay que buscar.
 
         Raises:
             KeyError: Arroja KeyError cuando la clave no pertenece al Mapeo.
 
         Returns:
-            Any: Devuelve el _value del ítem cuya clave coincide con k.
+            V: Devuelve el _value del ítem cuya clave coincide con k.
         """
         for item in self._table:
             if k == item._key:
@@ -57,12 +58,12 @@ class UnsortedTableMap[K: SupportsLowerThan, V](MapBase[K, V]):
         
         raise KeyError('Key Error: ' + repr(k))
     
-    def __setitem__(self, k : Any, v: Any) -> None:
+    def __setitem__(self, k : K, v: V) -> None:
         """ Establece como v como el nuevo valor del ítem con clave k.
 
         Args:
-            k (Any): clave que se va a buscar en el mapeo.
-            v (Any): valor para asignar al ítem con clave que k.
+            k (K): clave que se va a buscar en el mapeo.
+            v (V): valor para asignar al ítem con clave que k.
         """
         for item in self._table:
             if k == item._key:
@@ -71,11 +72,11 @@ class UnsortedTableMap[K: SupportsLowerThan, V](MapBase[K, V]):
             
         self._table.append(self._Item(k, v))
         
-    def __delitem__(self, k: Any) -> None:
+    def __delitem__(self, k: K) -> None:
         """ Elimina del Mapeo el ítem con clave k.
 
         Args:
-            k (Any): clave que se va a buscar en los ítems del Mapeo.
+            k (K): clave que se va a buscar en los ítems del Mapeo.
 
         Raises:
             KeyError: Es arrojado cuando la clave k no se encuentra en el mapeo.
@@ -87,20 +88,20 @@ class UnsortedTableMap[K: SupportsLowerThan, V](MapBase[K, V]):
                 return
         raise KeyError('Key Error: ' + repr(k))
     
-    def __iter__(self) -> Generator[Any, None, None]:
-        """ Devuelve un generator sobre el Mapeo que devuelve todas las claves.
+    def __iter__(self) -> Iterable[K]:
+        """ Devuelve un iterable sobre el Mapeo que devuelve todas las claves.
 
-        Yields:
-            Generator[Any, None, None]: devuelve todas las claves del Mapeo.
+        Returns:
+            Iterable[K]: devuelve todas las claves del Mapeo.
         """
         for item in self._table:
             yield item._key
                 
-    def iter_items(self) -> Generator[Any, None, None]:
-        """ Devuelve un generator sobre el Mapeo que devuelve todos los ítems.
+    def iter_items(self) -> Iterable[MapBase._Item]:
+        """ Devuelve un iterable sobre el Mapeo que devuelve todos los ítems.
 
-        Yields:
-            Generator[Any, None, None]: devuelve todas los ítems del Mapeo.
+        Returns:
+            Iterable[MapBase._Item]: devuelve todas los ítems del Mapeo.
         """
         for item in self._table:
             yield item

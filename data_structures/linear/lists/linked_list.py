@@ -1,4 +1,4 @@
-from typing import Optional, Iterable
+from collections.abc import Iterable
 from ..list_node import ListNode
 
 
@@ -56,7 +56,7 @@ class LinkedList[T]:
             self.index_of(item) >= 0
         )  # Si index_of devuelve un valor mayor o igual que cero => encontré el valor que estaba buscando.
 
-    def __getitem__(self, key: int) -> Optional[T]:
+    def __getitem__(self, key: int) -> T | None:
         """Devuelve el elemento ubicado en la posición key de la lista.
 
         Args:

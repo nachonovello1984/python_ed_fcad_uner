@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar, Generator
+from typing import TypeVar
 from ..common import SupportsLowerThan
 from .hashmap_base import HashMapBase
 
@@ -117,11 +117,11 @@ class ProbeHashMap[K, V](HashMapBase):
         
         self._table[s] = ProbeHashMap._AVAIL # marca como disponible la posición indicada por s
 
-    def __iter__(self) -> Generator[K, None, None]:
-        """ Devuelve un generator sobre self._table.
+    def __iter__(self) -> Iterable[K]:
+        """ Devuelve un iterable sobre self._table.
 
-        Yields:
-            Generator[K, None, None]: devuelve todas las claves del Mapeo.
+        Returns:
+            Iterable[K]: devuelve todas las claves del Mapeo.
         """
         for j in range(len(self._table)): # accede a todos los elementos de la tabla.
             if not self._is_available(j):

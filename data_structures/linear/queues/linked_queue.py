@@ -6,8 +6,8 @@ class LinkedQueue[T]:
     
     def __init__(self) -> None:
         """Crea una cola vacía"""
-        self._front: Optional[ListNode] = None
-        self._back: Optional[ListNode] = None
+        self._front: Optional[ListNode[T]] = None
+        self._back: Optional[ListNode[T]] = None
         self._size: int = 0
     
     def __len__(self) -> int:
@@ -102,7 +102,7 @@ class LinkedQueue[T]:
         Args:
             elem (T): Nuevo elemento al final de la estructura.
         """
-        nuevo_nodo = ListNode(elem, None)
+        nuevo_nodo = ListNode[T](elem, None)
         
         if self.is_empty():
             self._front = nuevo_nodo

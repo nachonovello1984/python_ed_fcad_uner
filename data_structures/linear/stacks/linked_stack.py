@@ -5,7 +5,7 @@ class LinkedStack[T]:
     """Implementación de Pila (E.D. tipo LIFO) utilizando representación por enlaces."""
     def __init__(self) -> None:
         """Crea una pila vacía"""
-        self._head : Optional[ListNode] = None
+        self._head : Optional[ListNode[T]] = None
         self._size : int = 0
 
     def __len__(self) -> int:
@@ -56,7 +56,7 @@ class LinkedStack[T]:
             elem (T): Nuevo elemento que se va agregar a la pila.
         """
         #nuevo_tope tiene como siguiente al actual tope (self._head)
-        nuevo_tope = ListNode(elem, self._head)
+        nuevo_tope = ListNode[T](elem, self._head)
         
         #hago a nuevo_tope el nuevo nodo cabecera o head
         self._head = nuevo_tope
