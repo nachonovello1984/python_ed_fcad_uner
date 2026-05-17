@@ -1,6 +1,7 @@
 from typing import TypeVar
 from ..common import SupportsLowerThan
 from .hashmap_base import HashMapBase
+from collections.abc import Iterable
 
 K = TypeVar("K", bound=SupportsLowerThan)
 V = TypeVar("V")
