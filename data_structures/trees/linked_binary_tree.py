@@ -22,6 +22,25 @@ class LinkedBinaryTree[T]:
             int: Número de nodos en la estructura.
         """
         return self._size
+    
+    def is_empty(self) -> bool:
+        """Indica si la estructura está vacía.
+
+        Returns:
+            bool: True si la cantidad de elementos es 0. False en caso contrario.
+        """
+        return self._size == 0
+
+    def root(self) -> T | None:
+        """Devuelve el elemento de la raíz del árbol.
+
+        Returns:
+            T | None: carga útil de la raíz.
+        """
+        if self.is_empty():
+            return None
+
+        return self._root.element  # type: ignore
 
     def __repr__(self) -> str:
         """Convierte en un string todos los nodos del árbol.
@@ -71,25 +90,6 @@ class LinkedBinaryTree[T]:
                 queue.enqueue(current.right_child)
 
             queue.dequeue()
-
-    def is_empty(self) -> bool:
-        """Indica si la estructura está vacía.
-
-        Returns:
-            bool: True si la cantidad de elementos es 0. False en caso contrario.
-        """
-        return self._size == 0
-
-    def root(self) -> T | None:
-        """Devuelve el elemento de la raíz del árbol.
-
-        Returns:
-            T | None: carga útil de la raíz.
-        """
-        if self.is_empty():
-            return None
-
-        return self._root.element  # type: ignore
 
     def add_root(self, new_node: BinaryTreeNode) -> None:
         """Establece el nodo pasado por parámetro como raíz del árbol.
@@ -325,7 +325,7 @@ class LinkedBinaryTree[T]:
 
         if not parent:
             raise Exception(
-                "No se puede agregar un nodo sin padre si la estructura está vacía."
+                "No se puede agregar un nodo sin padre."
             )
 
         if not self._contains(parent):
