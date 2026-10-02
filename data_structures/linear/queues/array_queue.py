@@ -24,9 +24,13 @@ class ArrayQueue[T]:
         Returns:
             str: string con todos los elementos que contiene la estructura.
         """
-        #Convierto todos los elementos en la lista a str.
-        str_lista = [str(elem) for elem in self._data if elem is not None]
-                
+        str_lista = []
+        indice = self._front
+        for _ in range(self._size):
+            # Convierto cada elemento en str y lo pongo al final de la lista.
+            str_lista.append(str(self._data[indice]))
+            indice = self._incrementar(indice)
+
         return "ArrayQueue(" + ", ".join(str_lista) + ")"
         
     def is_empty(self) -> bool:
@@ -110,3 +114,4 @@ class ArrayQueue[T]:
             paso = (paso + 1) % len(anterior)
         
         self._front = 0  # Resetear front
+        self._back = self._size - 1   # El último queda en la posición size - 1
