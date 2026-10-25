@@ -58,14 +58,14 @@ class ArrayHeap[K : SupportsLowerThan, V](PriorityQueueBase[K, V]):
         self._data.append(self._Item(key, value)) # _Item es la clase definida en PriorityQueueBase
         self._upheap(len(self._data) - 1)  #El nuevo nodo es hoja y hay que dejarlo ordenado.
 
-    def min(self) -> Tuple[Any, Any]:
+    def min(self) -> Tuple[K, V]:
         """Devuelve sin quitar el elemento ubicado en la raiz del heap.
   
 		Raises:
 			Exception: arroja excepción si la estructura está vacía.
    
    		Returns:
-			Tuple[Any, Any]: retorna una tupla formada por la clave y valor del nodo.
+			Tuple[K, V]: retorna una tupla formada por la clave y valor del nodo.
 
 		"""
         if self.is_empty():
@@ -74,11 +74,11 @@ class ArrayHeap[K : SupportsLowerThan, V](PriorityQueueBase[K, V]):
         item = self._data[0]
         return (item._key, item._value)
 
-    def remove_min(self) -> Tuple[Any, Any]:
+    def remove_min(self) -> Tuple[K, V]:
         """Quita el nodo con menor valor de clave.
 
         Returns:
-			Tuple[Any, Any]: retorna una tupla formada por la clave y valor del nodo.
+			Tuple[K, V]: retorna una tupla formada por la clave y valor del nodo.
         
         Raises:
 			Exception: Arroja excepción si la estructura está vacía.
